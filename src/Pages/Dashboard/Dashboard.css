@@ -1,0 +1,16 @@
+.opneSidebar {
+  transition: 0.7s;
+  width: 260px;
+}
+
+#close {
+  font-size: 4.3rem;
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+}
+
+.to-right {
+  margin-left: 271px;
+  transition: all 300ms ease-in-out;
+}
