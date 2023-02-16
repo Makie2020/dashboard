@@ -1,0 +1,57 @@
+/*
+import styled, { ThemeProvider } from 'styled-components'
+import { color, space, fontSize, buttonStyle, variant } from 'styled-system'
+
+const buttonSize = variant({
+  prop: 'size',
+  key: 'buttonSizes'
+})
+
+const theme = {
+  colors: {
+    custom: '#444',
+    yellow: 'yellow'
+  },
+ buttons: {
+    primary: {
+      color: 'white',
+      backgroundColor: 'blue'
+    },
+    secondary: {
+      color: 'white',
+      backgroundColor: 'green'
+    }  
+  },
+buttonSizes: {
+    small: {
+      fontSize: '15px',
+      padding: `7px 15px`
+    },
+    medium: {
+      fontSize: '18px',
+      padding: `9px 20px`
+    },
+    large: {
+      fontSize: '22px',
+      padding: `15px 30px`
+    }
+  }
+}
+
+const Button = styled.button`
+   border: 0;
+   outline: 0;
+   ${color}
+   ${space}
+   ${fontSize}
+   ${buttonStyle}
+ `
+
+const Example = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Button color='custom' variant='secondary' size='large'>Styled Button</Button>
+    </ThemeProvider>
+  )
+}
+*/
