@@ -13,8 +13,6 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
-=======
       <Routes>
         <Route element={<HomeLayout />}>
           <Route path="/login" element={<LoginPage />} />
@@ -26,8 +24,6 @@ function App() {
         <Route path="/contact" element={<ProtectedLayout><Contact/></ProtectedLayout>}/>
         <Route path="/users" element={<ProtectedLayout><Users /></ProtectedLayout>}/>
       </Routes>
-
->>>>>>> Sprint2
     </div>
   );
 }

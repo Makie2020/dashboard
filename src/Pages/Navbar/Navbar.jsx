@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { HiOutlineHeart, HiOutlineEnvelope, HiArrowRightOnRectangle } from "react-icons/hi2"
 import { useAuth } from "../../hooks/useAuth"
 
+
 const Menubar = styled.nav`
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.02);
   display: flex;
