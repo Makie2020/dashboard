@@ -1,21 +1,16 @@
 {
   "files": {
-    "main.css": "/dashboard/static/css/main.a101d2d3.css",
-    "main.js": "/dashboard/static/js/main.423c9199.js",
+    "main.css": "/dashboard/static/css/main.71b77001.css",
+    "main.js": "/dashboard/static/js/main.0aee8370.js",
     "static/media/Room1.jpg": "/dashboard/static/media/Room1.212668e09030e9043d42.jpg",
     "static/media/Room2.jpg": "/dashboard/static/media/Room2.0042fca3884df90081eb.jpg",
     "static/media/ProfilePic.jpg": "/dashboard/static/media/ProfilePic.8a6f22c11ebfe41a4133.jpg",
-    "static/media/primeicons.svg": "/dashboard/static/media/primeicons.e1441b135b3ca9ad643c.svg",
-    "static/media/primeicons.eot": "/dashboard/static/media/primeicons.d44157bdfa026dc877af.eot",
-    "static/media/primeicons.woff": "/dashboard/static/media/primeicons.10d3152104f2208ac82a.woff",
-    "static/media/primeicons.ttf": "/dashboard/static/media/primeicons.ea5358601d0a3fd6670b.ttf",
-    "static/media/primeicons.woff2": "/dashboard/static/media/primeicons.78172950b335ccdb94e2.woff2",
     "index.html": "/dashboard/index.html",
-    "main.a101d2d3.css.map": "/dashboard/static/css/main.a101d2d3.css.map",
-    "main.423c9199.js.map": "/dashboard/static/js/main.423c9199.js.map"
+    "main.71b77001.css.map": "/dashboard/static/css/main.71b77001.css.map",
+    "main.0aee8370.js.map": "/dashboard/static/js/main.0aee8370.js.map"
   },
   "entrypoints": [
-    "static/css/main.a101d2d3.css",
-    "static/js/main.423c9199.js"
+    "static/css/main.71b77001.css",
+    "static/js/main.0aee8370.js"
   ]
 }
