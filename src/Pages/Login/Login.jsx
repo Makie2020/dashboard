@@ -1,8 +1,10 @@
 import * as React from "react";
-import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import styled from "styled-components";
-import logo from "../../assets/Logo/logo.png"
+import logo from "../../assets/Logo/logo.png";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
 
 const Container = styled.div `
   background-color: #135846;
@@ -45,48 +47,44 @@ const Button = styled.button `
   font-family: "Poppins";
 `
 
-function LoginPage() {
-  const { login } = useAuth();
-  const [usernameInput, setusernameInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
+function LoginPage(props) {
+  const {dispatch} = useAuth();
+  const [username, setUsername] = useState('')
+  const [token, setToken] = useState('')
+  const navigate = useNavigate();
+  const [error, setError] = useState(false)
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    let hardcodedCred = {
-      username: 'Marieke',
-      password: 'test'
-  }
+  const handleLogin = (e) => {
+    e.preventDefault()
+    if(username ==="Marieke" && token ==="test") {       
+      dispatch({type:"LOGIN", value:{username:"", token:""}})
+      navigate('/dashboard')
+    } else {
+      setError(true)
+    }  
+ }
 
-  if ((usernameInput === hardcodedCred.username) && (passwordInput === hardcodedCred.password)) {
-      const data = new FormData(event.currentTarget);
-      login({
-        username: data.get("username"),
-        password: data.get("password")
-      });
-  } else {
-      alert('wrong email or password combination');
-  }
-
-  };
   return (
     <Container>
       <Img src={logo}/>
-      <Form onSubmit={handleSubmit} >
+      <Form onSubmit={handleLogin}>
         <Title>Hotel Admin Dashboard</Title>
         <Input 
           placeholder="Username" 
           type= "text" 
-          name="username" 
-          onChange={(e) => setusernameInput(e.target.value)}
+          name = "username"
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} 
           >
           </Input>
         <Input 
           placeholder="Password"  
           type="password" 
-          name="Zassword"
-          onChange={(e) => setPasswordInput(e.target.value)}
+          name="token"
+          value={token} 
+          onChange={(e) => setToken(e.target.value)} 
           >
-        </Input>
+          </Input>
         <Button type="submit">Login in</Button>
       </Form>
 

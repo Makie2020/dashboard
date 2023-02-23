@@ -1,27 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Sidebar from "../Sidebar/Sidebar";
-import Navbar from "../Navbar/Navbar";
+import Layout from "../../components/Layout";
 import { BiBed } from "react-icons/bi";
 import { SlCheck, SlClose } from "react-icons/sl";
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
-import { AiOutlineMenu } from "react-icons/ai";
 import { HiOutlineDocumentCheck} from "react-icons/hi2";
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid' 
 import "./Dashboard.css"
 
-const Container = styled.div `
-  display:flex;
-`
-const Header = styled.div `
-  display:flex;
-  align-items: center;
-`
-const Aside = styled.aside `
- transition: all 300ms ease-in-out;
- width: 100%;
-`
 const ContainerDiv = styled.div `
   padding: 2em 0;
   display: flex;
@@ -135,119 +122,109 @@ function Dashboard() {
   };
 
   return (
-    <Container>
-      <Aside className={on ? 'to-right' : ''}>
-        <Header>
-          <a href="#" onClick={handleOnClick}>
-            <AiOutlineMenu style={{margin:" 0 2em"}}/>
-          </a>
-          <Navbar name="Dashboard" style={{flex:"0 0 80%"}}/>
-        </Header>
-
-        <ContainerDiv>
-          <Div1>
-            <IconConatiner>
-              <BiBed style={{width:"28px", height:"28px"}}/>
-            </IconConatiner>
-            <TextContainer>
-              <Number>8,461</Number>
-              <Text>New Booking</Text>
-            </TextContainer>
-          </Div1>
-          <Div1>       
-            <IconConatiner style={{backgroundColor:"#E23428"}}>
-              <HiOutlineDocumentCheck style={{width:"28px", height:"28px", color: "#FFFFFF"}}/>
-            </IconConatiner>
-            <TextContainer>
-              <Number>963</Number>
-              <Text>Scheduled Room</Text>
-            </TextContainer>
-          </Div1>
-          <Div1>
-            <IconConatiner>
-              <BsBoxArrowInRight style={{width:"28px", height:"28px"}}/>
-            </IconConatiner>
-            <TextContainer>
-              <Number>753</Number>
-              <Text>Check In</Text>
-            </TextContainer>
-          </Div1>
-          <Div1>
-            <IconConatiner>
-              <BsBoxArrowInLeft style={{width:"28px", height:"28px"}}/>
-            </IconConatiner>
-            <TextContainer>
-              <Number>516</Number>
-              <Text>Check Out</Text>
-            </TextContainer>
-          </Div1>
-          <Div5>
-            <FullCalendar
-            plugins={[ dayGridPlugin ]}
-            initialView="dayGridMonth"
-            weekends={false}
-            contentHeight= "285px"
-            events={[
-              { title: 'event 1', date: '2019-04-01' },
-              { title: 'event 2', date: '2019-04-02' }
-            ]}
-          /></Div5>
-          <Div6>6</Div6>
-          <Div7>7</Div7>
-          <Div8>
-            <ReviewTitle>Latest Review by Customers</ReviewTitle>
-            <ReviewContainer>
-              <Review>
-                <ReviewText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam
-                </ReviewText>
-                <ReviewData>
-                  <img alt="person"></img>
-                  <ReviewDataText>
-                    <ReviewDataTitle>Kusnaidi Anderson</ReviewDataTitle>
-                    <ReviewDataTime>4m ago</ReviewDataTime>
-                  </ReviewDataText>
-                  <ReviewIconBox>
-                    <SlCheck style={{marginRight: "10px", color:"#5AD07A"}}/>
-                    <SlClose style ={{color: "#E23428"}}/>
-                  </ReviewIconBox>
-                </ReviewData>
-              </Review>
-              <Review>
-                <ReviewText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim      adminim veniam
-                </ReviewText>
-                <ReviewData>
-                  <img alt="person"></img>
-                  <ReviewDataText>
-                    <ReviewDataTitle>Kusnaidi Anderson</ReviewDataTitle>
-                    <ReviewDataTime>4m ago</ReviewDataTime>
-                  </ReviewDataText>
-                  <ReviewIconBox>
-                    <SlCheck style={{marginRight: "10px", color:"#5AD07A"}}/>
-                    <SlClose style ={{color: "#E23428"}}/>
-                  </ReviewIconBox>
-                </ReviewData>
-              </Review>
-              <Review>
-                <ReviewText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim      adminim veniam
-                </ReviewText>
-                <ReviewData>
-                  <img alt="person"></img>
-                  <ReviewDataText>
-                    <ReviewDataTitle>Kusnaidi Anderson</ReviewDataTitle>
-                    <ReviewDataTime>4m ago</ReviewDataTime>
-                  </ReviewDataText>
-                  <ReviewIconBox>
-                    <SlCheck style={{marginRight: "10px", color:"#5AD07A"}}/>
-                    <SlClose style ={{color: "#E23428"}}/>
-                  </ReviewIconBox>
-                </ReviewData>
-              </Review>
-            </ReviewContainer>
-          </Div8>
-        </ContainerDiv>
-      </Aside>
-      {on && <Sidebar openClass="open" />}  
-   </Container>
+    <Layout>
+      <ContainerDiv>
+        <Div1>
+          <IconConatiner>
+            <BiBed style={{width:"28px", height:"28px"}}/>
+          </IconConatiner>
+          <TextContainer>
+            <Number>8,461</Number>
+            <Text>New Booking</Text>
+          </TextContainer>
+        </Div1>
+        <Div1>       
+          <IconConatiner style={{backgroundColor:"#E23428"}}>
+            <HiOutlineDocumentCheck style={{width:"28px", height:"28px", color: "#FFFFFF"}}/>
+          </IconConatiner>
+          <TextContainer>
+            <Number>963</Number>
+            <Text>Scheduled Room</Text>
+          </TextContainer>
+        </Div1>
+        <Div1>
+          <IconConatiner>
+            <BsBoxArrowInRight style={{width:"28px", height:"28px"}}/>
+          </IconConatiner>
+          <TextContainer>
+            <Number>753</Number>
+            <Text>Check In</Text>
+          </TextContainer>
+        </Div1>
+        <Div1>
+          <IconConatiner>
+            <BsBoxArrowInLeft style={{width:"28px", height:"28px"}}/>
+          </IconConatiner>
+          <TextContainer>
+            <Number>516</Number>
+            <Text>Check Out</Text>
+          </TextContainer>
+        </Div1>
+        <Div5>
+          <FullCalendar
+          plugins={[ dayGridPlugin ]}
+          initialView="dayGridMonth"
+          weekends={false}
+          contentHeight= "285px"
+          events={[
+            { title: 'event 1', date: '2019-04-01' },
+            { title: 'event 2', date: '2019-04-02' }
+          ]}
+        /></Div5>
+        <Div6>6</Div6>
+        <Div7>7</Div7>
+        <Div8>
+          <ReviewTitle>Latest Review by Customers</ReviewTitle>
+          <ReviewContainer>
+            <Review>
+              <ReviewText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam
+              </ReviewText>
+              <ReviewData>
+                <img alt="person"></img>
+                <ReviewDataText>
+                  <ReviewDataTitle>Kusnaidi Anderson</ReviewDataTitle>
+                  <ReviewDataTime>4m ago</ReviewDataTime>
+                </ReviewDataText>
+                <ReviewIconBox>
+                  <SlCheck style={{marginRight: "10px", color:"#5AD07A"}}/>
+                  <SlClose style ={{color: "#E23428"}}/>
+                </ReviewIconBox>
+              </ReviewData>
+            </Review>
+            <Review>
+              <ReviewText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim      adminim veniam
+              </ReviewText>
+              <ReviewData>
+                <img alt="person"></img>
+                <ReviewDataText>
+                  <ReviewDataTitle>Kusnaidi Anderson</ReviewDataTitle>
+                  <ReviewDataTime>4m ago</ReviewDataTime>
+                </ReviewDataText>
+                <ReviewIconBox>
+                  <SlCheck style={{marginRight: "10px", color:"#5AD07A"}}/>
+                  <SlClose style ={{color: "#E23428"}}/>
+                </ReviewIconBox>
+              </ReviewData>
+            </Review>
+            <Review>
+              <ReviewText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim      adminim veniam
+              </ReviewText>
+              <ReviewData>
+                <img alt="person"></img>
+                <ReviewDataText>
+                  <ReviewDataTitle>Kusnaidi Anderson</ReviewDataTitle>
+                  <ReviewDataTime>4m ago</ReviewDataTime>
+                </ReviewDataText>
+                <ReviewIconBox>
+                  <SlCheck style={{marginRight: "10px", color:"#5AD07A"}}/>
+                  <SlClose style ={{color: "#E23428"}}/>
+                </ReviewIconBox>
+              </ReviewData>
+            </Review>
+          </ReviewContainer>
+        </Div8>
+      </ContainerDiv>
+   </Layout>
    
   );
 }
