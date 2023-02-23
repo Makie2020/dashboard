@@ -66,8 +66,7 @@ function Contact() {
   const [active, setActive] = useState(types[0]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState(null);
-  const [archivedMessage, setArchivedMessage] = useState([null]);
-  const [message, setMessage] = useState();
+  const [archivedMessages, setArchivedMessage] = useState([]);
 
   //fetch data
   useEffect(() => {
@@ -112,22 +111,15 @@ function Contact() {
     { heading: 'Action', value: 'actions' },
   ]
   const handleArchivedClick = (id) => {
-    setMessage(contacts.find(contact => contact.id === id));
-
-    if(archivedMessage === []){
-      setArchivedMessage(message)
-    } else {
-      setArchivedMessage([...archivedMessage,message])
-    }
+    const message = contacts.find(contact => contact.id === id);
+    setArchivedMessage([...archivedMessages, message]);
   };
-  console.log(message)
-  console.log(archivedMessage);
   
    const handleData = (index) => {
     if (index === 0){
       setFilteredResults(contacts)
     } else if (index === 1) {
-      setFilteredResults(archivedMessage)
+      setFilteredResults(archivedMessages)
     } 
   };
 
