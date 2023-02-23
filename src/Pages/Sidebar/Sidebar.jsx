@@ -12,7 +12,7 @@ const SidebarDiv = styled.div `
   transition: width 0.3s ease-in-out;
   box-shadow: 13px 3px 40px #00000005;
   height: 100vh;
-  width: 275px;
+  width: 238px;
   padding: 2em;
   top: 0;
   left: 0;
@@ -105,7 +105,7 @@ function Sidebar() {
       <nav>
         <List>
           <LinkList>
-            <Link to="/" style={{color:"#799283", textDecoration:"none"}}><RiDashboardLine style={{width: "24px", height:"27px", color:"#799283",marginRight:"1em"}}/>Dashboard</Link>
+            <Link to="/dashboard" style={{color:"#799283", textDecoration:"none"}}><RiDashboardLine style={{width: "24px", height:"27px", color:"#799283",marginRight:"1em"}}/>Dashboard</Link>
           </LinkList>
           <LinkList>
             <Link to="/bookings"  style={{color:"#799283", textDecoration:"none"}}><HiOutlineDocumentCheck style={{width: "24px", height:"27px", color:"#799283",marginRight:"1em"}}/>Bookings</Link>

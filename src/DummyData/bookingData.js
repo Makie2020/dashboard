@@ -1,8 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export const BookingData = {
-  getBookingsData() {
-      return [
+export const bookingData = [
   {
     "full__name": faker.name.fullName(),
     "image": faker.image.avatar(),
@@ -13,7 +11,7 @@ export const BookingData = {
     "special_request": "San Bernardino International Airport",
     "room_type" : "Single Bed",
     "room_number": 127,
-    "status": "Occupied",
+    "status": "In Progress",
     "price": 101
   }, {
     "full__name": faker.name.fullName(),
@@ -73,7 +71,7 @@ export const BookingData = {
     "special_request": null,
     "room_type" : "Single Bed",
     "room_number": 248,
-    "status": "Occupied",
+    "status": "In Progress",
     "price": 125
   }, {
     "full__name": faker.name.fullName(),
@@ -85,7 +83,7 @@ export const BookingData = {
     "special_request": "General Guadalupe Victoria International Airport",
     "room_type" : "Single Bed",
     "room_number": 7,
-    "status": "Occupied",
+    "status": "In Progress",
     "price": 185
   }, {
     "full__name": faker.name.fullName(),
@@ -193,7 +191,7 @@ export const BookingData = {
     "special_request": "Dix-Sept Rosado Airport",
     "room_type" : "Single Bed",
     "room_number": 221,
-    "status": "Occupied",
+    "status": "In Progress",
     "price": 365
   }, {
     "full__name": faker.name.fullName(),
@@ -493,7 +491,7 @@ export const BookingData = {
     "special_request": null,
     "room_type" : "Double Bed",
     "room_number": 7,
-    "status": "Available",
+    "status": "In Progress",
     "price": 1454
   }, {
     "full__name": faker.name.fullName(),
@@ -505,7 +503,7 @@ export const BookingData = {
     "special_request": null,
     "room_type" : "Double Bed",
     "room_number": 45,
-    "status": "Available",
+    "status": "In Progress",
     "price": 3500
   }, {
     "full__name": faker.name.fullName(),
@@ -529,7 +527,7 @@ export const BookingData = {
     "special_request": "Desert Rock Airport",
     "room_type" : "Double Bed",
     "room_number": 124,
-    "status": "Available",
+    "status": "In Progress",
     "price": 174864
   }, {
     "full__name": faker.name.fullName(),
@@ -904,16 +902,4 @@ export const BookingData = {
     "status": "Available",
     "price": 199
     },
-  ];
-  },
-
-  
-  getBookingsSmall() {
-    return Promise.resolve(this.getBookingsData().slice(0, 10));
-  },
-
-  getBookings() {
-      return Promise.resolve(this.getBookingsData());
-  },
- 
-}
+];

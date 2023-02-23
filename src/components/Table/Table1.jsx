@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
-import { BsThreeDotsVertical } from "react-icons/bs";
 import Pagination from './Pagination';
-
 
 const StyledTable = styled.table `
    width: 100%;
    border-collapse: collapse;
    min-width: 800px;
+   background-color: #FFFFFF;
+   padding-left: 2em;
    td, th {
     text-align: left;
+    padding-left: 1em;
    }
    tr {
         &:hover{
@@ -28,12 +29,30 @@ const Button = styled.button.attrs(props =>({className: props.className})) `
   &:hover{
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   };
-  ${props => props.value ==="Available" && css`
+  ${props => (props.value ==="Available") && css`
     background-color: #E8FFEE;
     color: #5AD07A;
   `};
   ${props => (props.value ==="Occupied") && css`
     background-color: #FFEDEC;
+    color: #E23428;
+  `};
+  ${props => (props.value ==="ACTIVE") && css`
+    background-color: transparent;
+    color: #5AD07A;
+  `};
+  ${props => (props.value ==="INACTIVE") && css`
+    background-color: transparent;
+    color: #E23428;
+  `};
+  ${props => (props.value ==="In Progress") && css`
+    background-color: #ffe6cc;
+    color: #ff9c33;
+  `};
+  ${props => (props.value ==="Special Request") && css`
+    background-color: #EEF9F2;
+  `};
+  ${props => (props.value ==="Action") && css`
     color: #E23428;
   `};
 `
@@ -42,67 +61,11 @@ const Img = styled.img `
   height: 77px;
   object-fit:cover ;
 `
-const Icon = styled.button`
-  border: none;
-  width: 24px;
-  height: 24px;
-`
-
-const ActionsMenu = styled.ul`
-  display: none;
-`
 const Th = styled.th `
   height: 65px;
-  +.descending {
-    background-color: green;
-    content : "↓"; 
-  };
-  + .ascending{
-  background-color: red;
-  }
 `
-export const useSortableData = (items, config = null) => {
-  const [sortConfig, setSortConfig] = React.useState(config);
-  const sortedItems = React.useMemo(() => {
-    let sortableItems = [...items];
-    if (sortConfig !== null) {
-      sortableItems.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortableItems;
-  }, [items, sortConfig]);
-
-  const requestSort = (key) => {
-    let direction = 'ascending';
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === 'ascending'
-    ) {
-      direction = 'descending';
-    }
-    setSortConfig({ key, direction });
-  };
-  return { items : sortedItems, requestSort, sortConfig };
-};
 
 export const ProductTable = (props, rowsPerPage)  => {
-  console.log(props)
-  const { items, requestSort, sortConfig } = useSortableData(props.data);
-  const getClassNamesFor = (heading) => {
-    if (!sortConfig) {
-      return;
-    }
-    return sortConfig.key === heading ? sortConfig.direction : undefined;
-  };
-
   //Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
@@ -110,29 +73,25 @@ export const ProductTable = (props, rowsPerPage)  => {
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = props.data.slice(indexOfFirstRecord, indexOfLastRecord);
   const nPages = Math.ceil(props.data.length / recordsPerPage)
+  const emitId = props.onArchivedClick;
 
-  //ActionsMenu
-  const[openActionMenu, setOpenActionsMenu] = useState(null);
-
-  const TableRow = (props) => (
+    const TableRow = (props) => (
     <tr>      
       {props.column.map((columnItem) => {
-        let td;
+        let td = <td key={props.data.id}/>;
         if (columnItem.heading === "Status") {
           td = <td key={props.data.id}><Button value={props.data[`${columnItem.value}`]}>{props.data[`${columnItem.value}`]}</Button></td>
         } else if (columnItem.heading === "Photo"){
           td = <td key={props.data.check_out}><Img src= {props.data[`${columnItem.value}`]}/></td>
+        } else if (columnItem.heading === "Special Request"){
+          td = <td key={props.data.special_request}><Button value={props.data[`${columnItem.value}`]}>View Notes</Button></td>
+        } else if (columnItem.heading === "Action"){
+          td = <td key={props.data.id}><Button value={props.data[`${columnItem.value}`]} onClick={event => emitId(props.data.id)}>Archive</Button></td>
         } else {
           td = <td key={props.data.check_in}>{props.data[`${columnItem.value}`]}</td>
         }
         return td;
       })}
-      {props.actions ?
-        <td>
-          <Icon onClick={() => setOpenActionsMenu(prevState => prevState === props.data.id ? null: props.data.id)}><BsThreeDotsVertical/></Icon>
-          <ActionsMenu visible = {setOpenActionsMenu === props.data.id}>{props.actions.map(action => <li onClick={action.action}>{action.name}</li>)}</ActionsMenu>
-        </td>
-      : null}
     </tr>
   )  
 
@@ -141,12 +100,11 @@ export const ProductTable = (props, rowsPerPage)  => {
       <StyledTable>
         <thead>
           <tr>
-            {props.column.map((item) => <Th item={item} key={item.heading}onClick={() => requestSort(item)} className={getClassNamesFor(item)}>{item.heading}</Th>)}
-            {props.actions ? <Th>Actions</Th> : null}
+            {props.column.map((item) => <Th item={item} key={item.heading}>{item.heading}</Th>)}
           </tr>
         </thead>
         <tbody>
-          {currentRecords.map((item) => <TableRow data={item} column={props.column} actions={props.actions}/>)}
+          {currentRecords.map((item) => <TableRow data={item} column={props.column} key={item.id}/>)}
         </tbody>
       </StyledTable>
       <Pagination nPages={nPages} currentPage={currentPage}  setCurrentPage={setCurrentPage}/>

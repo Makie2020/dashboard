@@ -1,210 +1,176 @@
-import React, { useState, useEffect } from 'react';
-import styled, {css} from "styled-components";
-import { AiOutlineMenu } from "react-icons/ai";
-import Sidebar from "../Sidebar/Sidebar";
-import Navbar from "../Navbar/Navbar";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { BookingData } from '../../DummyData/bookingData';
-import { FilterMatchMode} from 'primereact/api';
-import { TabMenu } from 'primereact/tabmenu';
-import { useNavigate } from 'react-router-dom';
-import 'primeflex/primeflex.css';  
-import 'primereact/resources/primereact.css';              
-import 'primeicons/primeicons.css';                          
-import 'primeflex/primeflex.css';  
-import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Layout from "../../components/Layout";
+import { ProductTable} from "../../components/Table/Table1";
+import { fetchBookings, selectAllBookings } from "../../store/slice/BookingsSlice";
 
-const Container = styled.div `
-  display:flex;
-`
-const Header = styled.div `
-  display:flex;
-  align-items: center;
-`
-const Aside = styled.aside `
- transition: all 300ms ease-in-out;
- width: 100%;
-`
-const ContainerTab = styled.div `
-  position: relative;
-  display: flex;
-`
-const Guestdiv = styled.button `
-  display: flex ;
-  align-items: center;
-  gap: 1em;
-  border: none;
-  text-align: left;
-  background-color: transparent;
-`
-const GuestImg = styled.img`
-  width: 45px;
-  height: 45px;
-`
-const GuestName = styled.h1`
-  font-size: 16px;
-  font-family: "Poppins";
-  line-height: 0;
-  margin-bottom: 1em;
-`
-const GuestId = styled.p`
-  font-size: 14px;
-  font-family: "Poppins";
-  color: #799283;
-  line-height: 0;
-`
 const Button = styled.button `
-  width: 109px;
-  height: 48px;
-  border: none;
+  background-color: #135846;
+  color: #FFFFFF;
+  font-family:"Poppins";
+  font-weight: 16px;
   border-radius: 12px;
-  font-size: 16px;
-  font-family: "Poppins";
-  font-weight: 500;
-  &:hover{
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  };
-  ${props => props.status ==="Available" && css`
-    background-color: #E8FFEE;
-    color: #5AD07A;
-  `};
-  ${props => (props.status ==="Occupied") && css`
-    background-color: #FFEDEC;
-    color: #E23428;
-  `};
-`
-const ButtonNotes = styled.button `
-  font-family: "Poppins";
-  width: 160px;
-  height: 48px;
   border: none;
-  font-size: 16px;
-  font-weight: 500;
-  border-radius: 12px;
-  color:#212121;
-  background-color: #EEF9F2;
-  &:hover{
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.04), 0 17px 50px 0 rgba(0,0,0,0.2);
-  };
-  ${props => (props.special_request === null) && css`
-    border: 1px solid #799283;
-    color: #799283;
-    background-color: #FFFFFF;
-  `};
-
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `
 const Input = styled.input `
-  font-family: "Poppins";
-  padding-left: 2.2em;
+  padding: 1em 2em;
   border-radius: 12px;
-  border: none;
+  color: #135846;
+  border: 1px solid #135846;
+  font-family:"Poppins";
+  font-weight: 16px;
+  margin-left: 2em;
+`
+const Select = styled.select`
+  font-family:"Poppins";
+  font-weight: 16px;
+  margin-left: 2em;
+  border-radius: 12px;
   background-color: #135846;
-  height: 49px;
-  width: 170px;
-  &::placeholder{
-    color: #FFFFFF;
-  }
-
+  color: #FFFFFF;
+  border: none;
+  padding: 1em 2em;
+`
+const Tab = styled.button`
+  font-size: 16px;
+  font-weight: 400;
+  color: #6E6E6E;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  background: white;
+  border: none;
+  font-family:"Poppins";
+  ${({ active }) =>
+    active &&
+    `
+    border-bottom: 2px solid #135846;
+    color: #135846;
+  `}
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+`;
+const Optionsdiv = styled.div `
+  display:flex;
+  justify-content: flex-end;
+  margin: 1em 1em;
 `
 
+const types = ['All Guests', 'Check in', 'Check out', 'In Progress'];
+
 function Bookings() {
-  const [on, setOn] = React.useState(false);
-  const handleOnClick = () => {
-    setOn(!on);
-  };
+  const dispatch = useDispatch();
+  const bookings = useSelector(selectAllBookings)
+  const bookingsStatus = useSelector(state => state.bookings.status)
+  const [active, setActive] = useState(types[0]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState(null);
 
-  const [bookings, setBookings] = useState([]);
-  const [filters, setFilters] = useState({
-    'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
-    'full__name': { value: null, matchMode: FilterMatchMode.CONTAINS },
-    'check_out': { value: null, matchMode: FilterMatchMode.IN },
-    'check_in': { value: null, matchMode: FilterMatchMode.IN },
-    'status': { value: null, matchMode: FilterMatchMode.EQUALS },
-  });
-  const items = [
-    {label: 'All Bookings'},
-    {label: 'Availible'},
-    {label: 'Occupied'},
-  ];
-    const [globalFilterValue, setGlobalFilterValue] = useState('');
-    const onGlobalFilterChange = (e) => {
-      const value = e.target.value;
-      let _filters = { ...filters };
-      _filters['global'].value = value;
-
-      setFilters(_filters);
-      setGlobalFilterValue(value);
-  }
-
-  const renderHeader = () => {
-      return (
-          <div className="flex justify-content-end">
-              <span className="p-input-icon-left">
-                  <i className="pi pi-search white" />
-                  <Input value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
-              </span>
-          </div>
-      )
-  }
-
+  //fetch data
   useEffect(() => {
-    BookingData.getBookings().then(data => setBookings(data));
-  }, []); 
+    if (bookingsStatus === 'idle') {
+      dispatch(fetchBookings())
+    }
+  }, [bookingsStatus, dispatch])
 
-  // REDIRECT TO BOOKING PAGE
+  //UPPDATE BOOKINGS
+  useEffect(() => searchItems(null), [bookings])
 
-  const navigate = useNavigate();
-  function handleClick(data) {
-    navigate(`/bookings/${data.id}`);
+   //SEARCH  
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue)
+    if (searchInput !== null) {
+        const filteredData = bookings.filter((booking) => {
+            return booking.full__name.toLowerCase().includes(searchInput.toLowerCase())
+        })
+        setFilteredResults(filteredData)
+    } else {
+        setFilteredResults(bookings)
+    }
+  }
+  // DROPDOWN
+  const sortBookings = (e) => {
+    const sortDirection = e.target.value;
+    const copyArray = [...bookings];
+    console.log(copyArray[1].full_name)
+    copyArray.sort((a, b) => {
+      return sortDirection === "0" ? a.full_name < b.full_name ? -1 : 1 : 0;
+    });
+    setFilteredResults(copyArray); 
   }
 
-  const guestTemplate = (data) => {
-    return (
-      <Guestdiv  onClick={() => handleClick(data)}>
-        <GuestImg src= {data.image} alt={data.full__name}/>
-        <div>
-          <GuestName sortable>{data.full__name}</GuestName>
-          <GuestId>{data.id}</GuestId>
-        </div>      
-      </Guestdiv>
-    )
-  }
-  const specialRequestBodyTemplate = (data) => {
-    return <ButtonNotes status={data.special_request}>view Notes</ButtonNotes>;
-  }
-
-  const statusBodyTemplate = (data) => {
-    return <Button status={data.status}>{data.status}</Button>;
-  }
-
-    return (
-    <Container>
-      <Aside className={on ? 'to-right' : ''}>
-        <Header>
-          <a href="#" onClick={handleOnClick}>
-            <AiOutlineMenu style={{margin:" 0 2em"}}/>
-          </a>
-          <Navbar name="Bookings" style={{flex:"0 0 80%"}}/>
-        </Header>
-        <TabMenu model={items} />
-        <ContainerTab >
-          <DataTable value={bookings} paginator rows={10} responsiveLayout="scroll" autoLayout="true" filters={filters} filterDisplay="row" globalFilterFields={['full__name', 'check_in', 'check:out', 'status']} header={renderHeader} >
-            <Column header="Guest" field ={bookings.full__name} body={guestTemplate} sortable ></Column>
-            <Column field="order_date" header="Order date"></Column>
-            <Column field="check_in" header="Check in" sortable></Column>
-            <Column field="check_out" header="Check out" sortable></Column>
-            <Column header="Special Request" body={specialRequestBodyTemplate}></Column>
-            <Column field="room_type" header="Room Type" sortable></Column>
-            <Column field="status" header="Status"  body={statusBodyTemplate} sortable></Column>
-          </DataTable>
-        </ContainerTab>
- 
-      </Aside>
+  //THEAD
+  const column = [
+    { heading: 'Photo', value: 'image' },
+    { heading: 'Name', value: 'full__name' },
+    { heading: 'ID', value: 'id' },
+    { heading: 'Check in', value: 'check_in' },
+    { heading: 'Check out', value: 'check_out' },
+    { heading: 'Special Request', value: 'special_request' },
+    { heading: 'Room type', value: 'room_type' },
+    { heading: 'Status', value: 'status' },
+    { heading: 'Action', value: '' },
+  ]
   
-      {on && <Sidebar openClass="open" />}
-    </Container>  
+   const handleData = (index) => {
+    if (index === 0){
+      setFilteredResults(bookings)
+    } else if (index === 1) {
+      const filteredBoookings = [...bookings]
+      const filteredCheckIn  = filteredBoookings.filter((booking) =>  booking.status === "Available");
+      setFilteredResults(filteredCheckIn)
+    } else if(index === 2) {
+      const filteredCheckOut = [...bookings]
+      const filteredCheckOutBookings  = filteredCheckOut.filter((booking) =>  booking.status === "Occupied");
+      setFilteredResults(filteredCheckOutBookings)
+    } else if(index === 3) {
+      const filteredProgress = [...bookings]
+      const filteredInProgressBookings  = filteredProgress.filter((booking) =>  booking.status === "In Progress");
+      setFilteredResults(filteredInProgressBookings)
+    };
+  }
+  //BUTTON NEW USER
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/users/newBooking`; 
+    navigate(path);
+  }
+  return (
+    <Layout>
+      <div>
+        <>
+          <ButtonGroup>
+            {types.map((type, index) => (
+              <Tab
+                key={type}
+                active={active === type}
+                value ={index}
+                onClick={() =>{ setActive(type); handleData(index)}}>
+                  {type}
+                </Tab>
+            ))}
+          </ButtonGroup>
+          <Optionsdiv>
+            <Button onClick={routeChange}>New Booking</Button>
+            <Input icon='search'
+              placeholder='Search...'
+              onChange={(e) => searchItems(e.target.value)}
+           />
+            <Select defaultValue={1} onChange={sortBookings}>
+              <option value={0}>Ascending</option>
+              <option value={1}>Descending</option>
+            </Select>
+          </Optionsdiv>
+          <ProductTable data={filteredResults} column={column} rowsPerPage={10}/>     
+        </>
+      </div>
+    </Layout>
     );
 }
-
-export default Bookings;
+export default Bookings
