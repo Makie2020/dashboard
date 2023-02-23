@@ -112,7 +112,15 @@ function Contact() {
   ]
   const handleArchivedClick = (id) => {
     const message = contacts.find(contact => contact.id === id);
-    setArchivedMessage([...archivedMessages, message]);
+    if (archivedMessages.includes(message)) {
+      return  setArchivedMessage([...archivedMessages])
+    } else {
+      setArchivedMessage([...archivedMessages, message]);
+    }
+    var toRemove = message;
+    var index = contacts.indexOf(toRemove);
+    contacts.splice(index,1);
+    console.log(contacts)
   };
   
    const handleData = (index) => {
