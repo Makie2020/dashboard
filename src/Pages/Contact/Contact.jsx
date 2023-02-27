@@ -132,7 +132,7 @@ function Contact() {
   };
 
   return (
-    <Layout>
+    <Layout name="Reviews">
       <Container>
         <ReviewCards/>
         <>

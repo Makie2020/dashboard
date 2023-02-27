@@ -1,68 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { ButtonGroup,Tab, Optionsdiv, Button, Input, Select } from "./UserStyles";
 import Layout from "../../components/Layout";
 import { ProductTable} from "../../components/Table/Table1";
 import { fetchUsers, selectAllUsers} from "../../store/slice/UsersSlice";
 import { HiUserAdd } from "react-icons/hi";
 
-
-const Button = styled.button `
-  background-color: #135846;
-  color: #FFFFFF;
-  font-family:"Poppins";
-  font-weight: 16px;
-  border-radius: 12px;
-  border: none;
-  padding: 1em 2em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`
-const Input = styled.input `
-  padding: 1em 2em;
-  border-radius: 12px;
-  color: #135846;
-  border: 1px solid #135846;
-  font-family:"Poppins";
-  font-weight: 16px;
-  margin-left: 2em;
-`
-const Select = styled.select`
-  font-family:"Poppins";
-  font-weight: 16px;
-  margin-left: 2em;
-  border-radius: 12px;
-  background-color: #135846;
-  color: #FFFFFF;
-  border: none;
-  padding: 1em 2em;
-`
-const Tab = styled.button`
-  font-size: 16px;
-  font-weight: 400;
-  color: #6E6E6E;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  background: white;
-  border: none;
-  font-family:"Poppins";
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid #135846;
-    color: #135846;
-  `}
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-`;
-const Optionsdiv = styled.div `
-  display:flex;
-  justify-content: flex-end;
-  margin: 1em 1em;
-`
 
 const types = ['All Employees', 'Active Employee', 'Inactive Employee'];
 
@@ -73,19 +17,37 @@ function Users() {
   const [active, setActive] = useState(types[0]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState(null);
+  const [orderBy, setOrderBy] = useState("start_date")
 
 
-  //fetch data
+  //fetch users
   useEffect(() => {
     if (usersStatus === 'idle') {
       dispatch(fetchUsers())
     }
   }, [usersStatus, dispatch])
 
+  // SORT CONTACTS
+  useEffect(() => {
+    const orderedFilteredUser = [...users]
+
+    orderedFilteredUser.sort ((a,b) => {
+      if(a[orderBy] - b[orderBy]){
+        return 1
+      } else if (a[orderBy] - b[orderBy]) {
+        return -1
+      }
+      return 0
+    })
+
+    setFilteredResults(orderedFilteredUser)
+    console.log(orderedFilteredUser)
   
+  }, [users, orderBy])
+
   //UPPDATE USERS
   useEffect(() => searchItems(null), [users])
-
+  
    //SEARCH  
   const searchItems = (searchValue) => {
     setSearchInput(searchValue)
@@ -139,11 +101,11 @@ function Users() {
   //BUTTON NEW USER
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
-    let path = `/users/newUser`; 
+    let path = `/users/new-user`; 
     navigate(path);
   }
   return (
-    <Layout>
+    <Layout name="Users">
       <div>
         <>
           <ButtonGroup>

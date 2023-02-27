@@ -9,18 +9,27 @@ function delay(roomData, time = 200) {
   })
 }
 
-export const fetchRooms = createAsyncThunk('users/fetchRooms', async()=> {
+export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async()=> {
   return await delay(roomData)
 })
-
-export const newRoom = createAsyncThunk('users/saveNewRoom', async(data) => {
-  return await delay (data)
+export const getRoom = createAsyncThunk('rooms/getRoom', async() => {
+  return await delay ()
+})
+export const addRoom = createAsyncThunk('rooms/addRoom', async() => {
+  return await delay ()
+})
+export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async() => {
+  return await delay ()
+})
+export const editRoom = createAsyncThunk('rooms/editRoom', async() => {
+  return await delay ()
 })
 
 const RoomsSlice = createSlice({
     name: 'rooms',
     initialState: {
-        room: [],
+        rooms: [],
+        room: {},
         status: 'idle',
         error: null
     },
@@ -33,17 +42,41 @@ const RoomsSlice = createSlice({
         })
         .addCase(fetchRooms.fulfilled,(state, action)=>{
           state.status = "Succeeded"
-          state.room = action.payload
+          state.rooms = action.payload
         })
         .addCase(fetchRooms.rejected,(state, action)=>{
           state.status = "Failed"
           state.message = action.error.message;
         })
-        .addCase(newRoom.fulfilled, (state, action)=> {
+        .addCase(getRoom.fulfilled, (state, action)=> {
           state.status = "Succeeded"
-          state.room = [...state.room, action.payload]
+          state.room = state.rooms.find(room => room.id === action.payload);
         })
-        .addCase(newRoom.rejected,(state, action)=>{
+        .addCase(getRoom.rejected,(state, action)=>{
+          state.status = "Failed"
+          state.message = action.error.message;
+        })
+        .addCase(addRoom.fulfilled, (state, action)=> {
+          state.status = "Succeeded"
+          state.rooms = [...state.rooms, action.payload]
+        })
+        .addCase(addRoom.rejected,(state, action)=>{
+          state.status = "Failed"
+          state.message = action.error.message;
+        })
+        .addCase(deleteRoom.fulfilled, (state, action)=> {
+          state.status = "Succeeded"
+          state.rooms = state.rooms.filter(room => room.id !== action.payload);
+        })
+        .addCase(deleteRoom.rejected,(state, action)=>{
+          state.status = "Failed"
+          state.message = action.error.message;
+        })
+        .addCase(editRoom.fulfilled, (state, action)=> {
+          state.status = "Succeeded"
+          state.rooms = state.rooms = state.rooms.map(room => room.id === action.payload.id ? action.payload : room)
+        })
+        .addCase(editRoom.rejected,(state, action)=>{
           state.status = "Failed"
           state.message = action.error.message;
         })
@@ -52,7 +85,7 @@ const RoomsSlice = createSlice({
 
 export default RoomsSlice.reducer
 
-export const selectAllRooms = state => state.rooms.room
+export const selectAllRooms = state => state.rooms.rooms
 
 export const selectById = (state, roomsId) =>
   state.rooms.find(rooms => rooms.id === roomsId)

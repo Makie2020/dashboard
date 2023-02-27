@@ -13,6 +13,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async()=> {
   return await delay(usersData)
 })
 
+
 export const newUser = createAsyncThunk('users/saveNewUser', async(data) => {
   return await delay (data)
 })

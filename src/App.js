@@ -28,9 +28,9 @@ function App() {
             <Route path="bookings" element={<Bookings />}/>
             <Route path="bookings/:id" element={<Booking/>}/>
             <Route path="rooms" element={<Rooms />}/>
-            <Route path="rooms/newRoom" element={<NewRoom/>}/>
+            <Route path="rooms/new-room" element={<NewRoom/>}/>
             <Route path="users" element={<Users />}/>
-            <Route path="users/newUser" element={<NewUser />}/>
+            <Route path="users/new-user" element={<NewUser />}/>
             <Route path="contact" element={<Contact/>}/>
           </Routes>
         </AuthProvider>

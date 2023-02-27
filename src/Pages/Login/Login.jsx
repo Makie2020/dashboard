@@ -1,51 +1,9 @@
 import * as React from "react";
 import { useAuth } from "../../hooks/useAuth";
-import styled from "styled-components";
+import { Form, Container,Img, Title,Label,Input,Button } from "./LoginStyles";
 import logo from "../../assets/Logo/logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
-
-const Container = styled.div `
-  background-color: #135846;
-  font-family: "Poppins";
-  text-align: center;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-`
-
-const Form = styled.form `
-  width: 40%;
-  border: 1px solid #135846;
-  margin:0 auto ;
-`
-const Img = styled.img `
-  margin-top: 5em;
-`
-const Title = styled.h1`
-  font-weight: 600;
-  color: white;
-`
-const Input = styled.input `
-  border-radius: 12px;
-  border: none;
-  width: 220px;
-  height: 50px;
-  margin: 1em;
-  ::placeholder{
-    padding-left: 1em;
-    font-family: "Poppins";
-  }
-`
-const Button = styled.button `
-  border-radius: 12px;
-  border: none;
-  width: 215px;
-  height: 50px;
-  background-color: #5AD07A;
-  font-family: "Poppins";
-`
 
 function LoginPage(props) {
   const {dispatch} = useAuth();
@@ -66,19 +24,21 @@ function LoginPage(props) {
 
   return (
     <Container>
-      <Img src={logo}/>
       <Form onSubmit={handleLogin}>
-        <Title>Hotel Admin Dashboard</Title>
+        <Img src={logo}/>
+        <Title>Hotel Miranda Admin Dashboard</Title>
+        <Label>Username</Label>
         <Input 
-          placeholder="Username" 
+          placeholder="Marieke" 
           type= "text" 
           name = "username"
           value={username} 
           onChange={(e) => setUsername(e.target.value)} 
           >
           </Input>
+        <Label>Password</Label>
         <Input 
-          placeholder="Password"  
+          placeholder="test"  
           type="password" 
           name="token"
           value={token} 

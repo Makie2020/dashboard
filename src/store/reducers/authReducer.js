@@ -17,10 +17,16 @@ export const AuthReducer = (state = initialState, action) => {
       };
     case ACTION_TYPES.LOGOUT:
       return {
-        ...state,
         isAuth: false,
         username: null,
         token: null,
+      };
+    case ACTION_TYPES.UPDATE:
+      return {
+        ...state,
+        isAuth: false,
+        username: action.value.username,
+        token:  action.value.token,
       };
     default:
       return state;

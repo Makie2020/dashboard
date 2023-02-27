@@ -13,3 +13,8 @@ export const logout = () => {
     type: ACTION_TYPES.LOGOUT,
   };
 };
+export const update = () => {
+  return {
+    type: ACTION_TYPES.UPDATE,
+  };
+};

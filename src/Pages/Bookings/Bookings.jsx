@@ -1,66 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { Div,ButtonGroup,Tab,Button,Input,Optionsdiv,Select } from "./BookingsStyles";
 import Layout from "../../components/Layout";
 import { ProductTable} from "../../components/Table/Table1";
 import { fetchBookings, selectAllBookings } from "../../store/slice/BookingsSlice";
-
-const Button = styled.button `
-  background-color: #135846;
-  color: #FFFFFF;
-  font-family:"Poppins";
-  font-weight: 16px;
-  border-radius: 12px;
-  border: none;
-  padding: 1em 2em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`
-const Input = styled.input `
-  padding: 1em 2em;
-  border-radius: 12px;
-  color: #135846;
-  border: 1px solid #135846;
-  font-family:"Poppins";
-  font-weight: 16px;
-  margin-left: 2em;
-`
-const Select = styled.select`
-  font-family:"Poppins";
-  font-weight: 16px;
-  margin-left: 2em;
-  border-radius: 12px;
-  background-color: #135846;
-  color: #FFFFFF;
-  border: none;
-  padding: 1em 2em;
-`
-const Tab = styled.button`
-  font-size: 16px;
-  font-weight: 400;
-  color: #6E6E6E;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  background: white;
-  border: none;
-  font-family:"Poppins";
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid #135846;
-    color: #135846;
-  `}
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-`;
-const Optionsdiv = styled.div `
-  display:flex;
-  justify-content: flex-end;
-  margin: 1em 1em;
-`
 
 const types = ['All Guests', 'Check in', 'Check out', 'In Progress'];
 
@@ -115,7 +59,7 @@ function Bookings() {
     { heading: 'Special Request', value: 'special_request' },
     { heading: 'Room type', value: 'room_type' },
     { heading: 'Status', value: 'status' },
-    { heading: 'Action', value: '' },
+    { heading: 'Actions', value: '' },
   ]
   
    const handleData = (index) => {
@@ -142,8 +86,8 @@ function Bookings() {
     navigate(path);
   }
   return (
-    <Layout>
-      <div>
+    <Layout name="Bookings">
+      <Div>
         <>
           <ButtonGroup>
             {types.map((type, index) => (
@@ -169,7 +113,7 @@ function Bookings() {
           </Optionsdiv>
           <ProductTable data={filteredResults} column={column} rowsPerPage={10}/>     
         </>
-      </div>
+      </Div>
     </Layout>
     );
 }

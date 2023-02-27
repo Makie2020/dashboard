@@ -1,57 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 import { ProductTable} from "../../components/Table/Table1";
 import { fetchRooms, selectAllRooms } from "../../store/slice/RoomsSlice";
-
-const Button = styled.button `
-  background-color: #135846;
-  color: #FFFFFF;
-  font-family:"Poppins";
-  font-weight: 16px;
-  border-radius: 12px;
-  border: none;
-  padding: 1em 2em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`
-const Select = styled.select`
-  font-family:"Poppins";
-  font-weight: 16px;
-  margin-left: 2em;
-  border-radius: 12px;
-  background-color: #135846;
-  color: #FFFFFF;
-  border: none;
-  padding: 1em 2em;
-`
-const Tab = styled.button`
-  font-size: 16px;
-  font-weight: 400;
-  color: #6E6E6E;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  background: white;
-  border: none;
-  font-family:"Poppins";
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid #135846;
-    color: #135846;
-  `}
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-`;
-const Optionsdiv = styled.div `
-  display:flex;
-  justify-content: flex-end;
-  margin: 1em 1em;
-`
+import {ButtonGroup, Tab,Button,Select,Optionsdiv} from "./RoomsStyles"
 
 const types = ['All Rooms', 'Availible Rooms', 'Occupied Rooms'];
 
@@ -67,7 +20,7 @@ function Rooms() {
     if (roomsStatus === 'idle') {
       dispatch(fetchRooms())
     }
-  }, [roomsStatus, dispatch])
+  }, [rooms])
 
   // DROPDOWN
   const sortRooms = (e) => {
@@ -91,7 +44,7 @@ function Rooms() {
     { heading: 'Status', value: 'status' },
   ]
   
-   const handleData = (index) => {
+  const handleData = (index) => {
     if (index === 0){
       setFilteredResults(rooms)
     } else if (index === 1) {
@@ -105,14 +58,8 @@ function Rooms() {
     }
   };
 
-  //BUTTON NEW ROOM
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/users/newRoom`; 
-    navigate(path);
-  }
   return (
-    <Layout>
+    <Layout name="Room List">
       <div>
         <>
           <ButtonGroup>
@@ -127,7 +74,7 @@ function Rooms() {
             ))}
           </ButtonGroup>
           <Optionsdiv>
-            <Button onClick={routeChange}>New Room</Button>
+            <Link to='/rooms/new-room'><Button>New Room</Button></Link>
             <Select defaultValue={1} onChange={sortRooms}>
               <option value={0}>Ascending</option>
               <option value={1}>Descending</option>

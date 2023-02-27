@@ -14,10 +14,12 @@ const Header = styled.div `
 const Aside = styled.aside `
  transition: all 300ms ease-in-out;
 `
+const Main = styled.div `
+  background-color: #F8F8F8;
+`
 
 export const Layout = ({ children, name }) => {
   const [on, setOn] = useState(false);
-
   const handleOnClick = () => {
     setOn(!on);
   };
@@ -30,7 +32,7 @@ export const Layout = ({ children, name }) => {
         </a>
         <Navbar name={name} style={{flex:"0 0 80%"}}/>
       </Header>
-      <main>{children}</main>
+      <Main>{children}</Main>
     </Aside>
     {on && <Sidebar openClass="open" />}
   </Container>  
