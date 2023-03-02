@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components";
 
 export const Button = styled.button `
@@ -40,9 +41,11 @@ export const Tab = styled.button`
 `;
 export const ButtonGroup = styled.div`
   display: flex;
+  background-color: #FFFFFF;
 `;
 export const Optionsdiv = styled.div `
   display:flex;
   justify-content: flex-end;
-  margin: 1em 1em;
+  padding: 1em;
+  background-color: #FFFFFF;
 `

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button `
+export const Button = styled.button`
   background-color: #135846;
   color: #FFFFFF;
   font-family:"Poppins";
