@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Div,ButtonGroup,Tab,Button,Input,Optionsdiv,Select } from "./BookingsStyles";
+import { Div,ButtonGroup,Tab,Input,Optionsdiv,Select } from "./BookingsStyles";
 import Layout from "../../components/Layout";
 import { ProductTable} from "../../components/Table/Table1";
-import { fetchBookings, selectAllBookings } from "../../store/slice/BookingsSlice";
+import { fetchBookings, selectAllBookings, deleteBooking } from "../../store/slice/BookingsSlice";
 
 const types = ['All Guests', 'Check in', 'Check out', 'In Progress'];
 
@@ -26,13 +26,17 @@ function Bookings() {
   //UPPDATE BOOKINGS
   useEffect(() => searchItems(null), [bookings])
 
-   //SEARCH  
+  // DELETE BOOKING
+  const onDeleteBooking = (e, id) => {
+    e.preventDefault();
+    dispatch(deleteBooking(id));
+  };
+
+  //SEARCH  
   const searchItems = (searchValue) => {
     setSearchInput(searchValue)
     if (searchInput !== null) {
-        const filteredData = bookings.filter((booking) => {
-            return booking.full__name.toLowerCase().includes(searchInput.toLowerCase())
-        })
+        const filteredData = bookings.filter((booking) =>  booking.full__name.toLowerCase().includes(searchInput.toLowerCase()))
         setFilteredResults(filteredData)
     } else {
         setFilteredResults(bookings)
@@ -42,18 +46,17 @@ function Bookings() {
   const sortBookings = (e) => {
     const sortDirection = e.target.value;
     const copyArray = [...bookings];
-    console.log(copyArray[1].full_name)
     copyArray.sort((a, b) => {
       return sortDirection === "0" ? a.full_name < b.full_name ? -1 : 1 : 0;
     });
-    setFilteredResults(copyArray); 
+    setFilteredResults(copyArray);
   }
 
   //THEAD
   const column = [
     { heading: 'Photo', value: 'image' },
     { heading: 'Name', value: 'full__name' },
-    { heading: 'ID', value: 'id' },
+    { heading: 'Booking ID', value: 'bookingId' },
     { heading: 'Check in', value: 'check_in' },
     { heading: 'Check out', value: 'check_out' },
     { heading: 'Special Request', value: 'special_request' },
@@ -79,12 +82,6 @@ function Bookings() {
       setFilteredResults(filteredInProgressBookings)
     };
   }
-  //BUTTON NEW USER
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/users/newBooking`; 
-    navigate(path);
-  }
   return (
     <Layout name="Bookings">
       <Div>
@@ -101,7 +98,6 @@ function Bookings() {
             ))}
           </ButtonGroup>
           <Optionsdiv>
-            <Button onClick={routeChange}>New Booking</Button>
             <Input icon='search'
               placeholder='Search...'
               onChange={(e) => searchItems(e.target.value)}
@@ -111,7 +107,7 @@ function Bookings() {
               <option value={1}>Descending</option>
             </Select>
           </Optionsdiv>
-          <ProductTable data={filteredResults} column={column} rowsPerPage={10}/>     
+          <ProductTable data={filteredResults} column={column} rowsPerPage={10} onDeleteBooking={onDeleteBooking}/>     
         </>
       </Div>
     </Layout>

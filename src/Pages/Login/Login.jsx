@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Form, Container,Img, Title,Label,Input,Button } from "./LoginStyles";
@@ -18,6 +19,7 @@ function LoginPage(props) {
       dispatch({type:"LOGIN", value:{username:"", token:""}})
       navigate('/dashboard')
     } else {
+      alert("Username and/or Password is incorrect.")
       setError(true)
     }  
  }

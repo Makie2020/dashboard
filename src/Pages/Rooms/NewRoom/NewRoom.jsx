@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState} from 'react'
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -28,7 +29,7 @@ function NewRoom() {
 
   const onSubmit = (e) => {
   e.preventDefault()
-  dispatch(register(state))
+  dispatch(addRoom(state))
   }
 
   const [checkedBox, setCheckedBox] = useState([]);
@@ -50,7 +51,7 @@ function NewRoom() {
 */
   return (
     <Layout name={"Room/new-room"}>
-      <Form onSubmit={onCreateRoom}>
+      <Form onSubmit={onSubmit}>
         <Title>New Room Form</Title>
         <Div style={{width: "250px" }}>
           <TitleInput> Room Name </TitleInput>
@@ -86,7 +87,7 @@ function NewRoom() {
           <TextArea 
                 placeholder="Description" 
                 type="text"
-                value ={description}
+                value ={state.description}
                 onChange={onChangeValue}
               /> 
         </Div>
@@ -94,14 +95,13 @@ function NewRoom() {
           <TitleInput> Offer </TitleInput>
             <Checkbox
               type="checkbox"
-              value={offer}
-              name ={offer}
+              value={state.offer}
               onChange={onChangeValue}
             />
             <label>Yes</label>
             <Checkbox
               type="checkbox"
-              value={offer}
+              value={state.checkbox}
               onChange={onChangeValue}
             />
             <label>No</label> 
@@ -111,7 +111,7 @@ function NewRoom() {
             <Input 
               placeholder="Price" 
               type="number"
-              value ={price}
+              value={state.checkbox}
               onChange={onChangeValue} 
             /> 
         </Div>
@@ -120,7 +120,7 @@ function NewRoom() {
           <Input 
             placeholder="Discount" 
             type="number"
-            value ={discount}
+            value ={state.discount}
             onChange={onChangeValue}
           /> 
         </Div>
@@ -129,7 +129,7 @@ function NewRoom() {
           <TextArea 
             placeholder="Cancellation" 
             type="text"
-            value ={cancellation}
+            value ={state.cancellation}
             onChange={onChangeValue}  
           /> 
         </Div>

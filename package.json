@@ -16,6 +16,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primereact": "^9.0.0",
@@ -39,13 +42,33 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress": "cypress open",
+    "lint": "eslint src",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier",
+      "cypress"
+    ],
+    "env": {
+      "cypress/globals": true,
+      "jest": true
+    },
+    "rules": {
+      "prettier/prettier": "warn"
+    }
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSpacing": false,
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "browserslist": {
     "production": [
@@ -61,6 +84,10 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "gh-pages": "^5.0.0"
+    "cypress": "^12.7.0",
+    "gh-pages": "^5.0.0",
+    "jest": "^27.5.1",
+    "jest-styled-components": "^7.1.1",
+    "react-test-renderer": "^18.2.0"
   }
 }

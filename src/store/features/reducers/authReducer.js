@@ -1,9 +1,9 @@
-import * as ACTION_TYPES from "../actions/action_type";
+import * as ACTION_TYPES from '../actions/action_type';
 
 export const initialState = {
   isAuth: false,
-  username: "",
-  token: "",
+  username: '',
+  token: '',
 };
 
 export const AuthReducer = (state = initialState, action) => {
@@ -17,6 +17,7 @@ export const AuthReducer = (state = initialState, action) => {
       };
     case ACTION_TYPES.LOGOUT:
       return {
+        ...state,
         isAuth: false,
         username: null,
         token: null,
@@ -26,7 +27,7 @@ export const AuthReducer = (state = initialState, action) => {
         ...state,
         isAuth: false,
         username: action.value.username,
-        token:  action.value.token,
+        token: action.value.token,
       };
     default:
       return state;

@@ -1,9 +1,8 @@
+/* eslint-disable prettier/prettier */
 import styled from "styled-components"
 import { HiOutlineHeart, HiOutlineEnvelope, HiArrowRightOnRectangle } from "react-icons/hi2"
 import { useAuth } from "../../hooks/useAuth"
 import { useNavigate } from "react-router"
-
-
 const Menubar = styled.nav`
   background-color: #FFFFFF;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.02);
@@ -13,11 +12,11 @@ const Menubar = styled.nav`
   width:100% ;
 `
 const LogoBox = styled.div `
-  display: flex ;
-  align-items:center ;
+  display: flex;
+  align-items:center;
   gap: 35px;
 `
- const Title = styled.h1 `
+ const Title = styled.h1`
   font-size: 28px;
   font-weight: 600;
   color: #262626;
