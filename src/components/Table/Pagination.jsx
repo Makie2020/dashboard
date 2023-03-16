@@ -33,7 +33,6 @@ const NumberedButtons = styled.a `
     padding: 1em 1.5em;
   }
 `
-
 const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
   const pageNumbers = [...Array(nPages + 1).keys()].slice(1);
   const nextPage = () => {
