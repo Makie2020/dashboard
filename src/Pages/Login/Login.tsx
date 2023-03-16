@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Form, Container,Img, Title,Label,Input,Button } from "./LoginStyles.js";
 import logo from "../../assets/Logo/logo.png";
-import { useAuth } from '../../App.js';
+import { useAuth } from '../../App';
 
 function LoginPage() {
   const [username, setUserName] = useState<string>('')
@@ -11,21 +11,24 @@ function LoginPage() {
   const {dispatch, user, token} = useAuth();
   const navigate = useNavigate();
 
+
   const handleLogin = (e: React.FormEvent)=> {
     e.preventDefault()
-    if(username === user && password === token) {    
-      dispatch({type: "LOGIN", payload: true})
+    if(username === user && password === token) {
+      if (dispatch) {
+        dispatch({type: "LOGIN", payload: true})
+      }
       navigate('/dashboard')
       localStorage.setItem('Dashboard', JSON.stringify(user));
     } else {
       alert("Username and/or Password is incorrect.");
       (e.target as HTMLFormElement).reset()
     }  
- }
+  }
 
   return (
     <Container>
-      <Form onSubmit={(_e: React.SyntheticEvent) => handleLogin}>
+      <Form onSubmit={(e: React.SyntheticEvent) => handleLogin(e)}>
         <Img src={logo}/>
         <Title>Hotel Miranda Admin Dashboard</Title>
         <Label>Username</Label>
