@@ -2,29 +2,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {roomData} from '../../DummyData/roomData';
 import { delay } from './delay';
-
-export interface RoomDataExtended {
-  image: any;
-  id: string;
-  room_number: number;
-  room_type: string;
-  name: string;
-  amenities: string[];
-  price: string;
-  offer_price: string;
-  status: string;
-}
-
-interface RoomState {
-  rooms: RoomDataExtended[] | [],
-  room: RoomDataExtended| null | string[],
-  status: 'idle' | 'Loading' | 'Succeeded' | 'Failed'
-}
-
-interface ActionInterface {
-  type: string;
-  payload: any;
-}
+import { Action } from '../../Interfaces/interfaces';
+import { RoomState } from '../../Interfaces/RoomsDataInterface';
 
 const initialState : RoomState = {
   rooms: [],
@@ -32,20 +11,20 @@ const initialState : RoomState = {
   status: 'idle',
 }
 
-export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async (data: RoomDataExtended[] = roomData) => {
-  return await delay(data);
+export const fetchRooms = createAsyncThunk<any>('rooms/fetchRooms',async (data: any = roomData) => {
+    return await delay(data);
 });
-export const getRoom = createAsyncThunk('rooms/getRoom', async (idRoom: number) => {
-  return await delay(idRoom);
+export const getRoom = createAsyncThunk('rooms/getRoom', async (id: number) => {
+  return await delay(id);
 });
 export const addRoom = createAsyncThunk('rooms/addRoom', async (data: string[]) => {
   return await delay(data);
 });
-export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async (idRoom: number) => {
-  return await delay(idRoom);
+export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async (id: number) => {
+  return await delay(id);
 });
-export const editRoom = createAsyncThunk('rooms/editRoom', async (idRoom: number) => {
-  return await delay(idRoom);
+export const editRoom = createAsyncThunk('rooms/editRoom', async (id: number) => {
+  return await delay(id);
 });
 
 const RoomsSlice = createSlice({
@@ -57,7 +36,7 @@ const RoomsSlice = createSlice({
       .addCase(fetchRooms.pending, state => {
         state.status = 'Loading';
       })
-      .addCase(fetchRooms.fulfilled, (state: RoomState, action: ActionInterface) => {
+      .addCase(fetchRooms.fulfilled, (state: RoomState, action: Action) => {
         state.status = 'Succeeded';
         state.rooms = action.payload;
       })
@@ -65,15 +44,17 @@ const RoomsSlice = createSlice({
         state.status = 'Failed';
         console.log("Not able to load rooms")
       })
-      .addCase(getRoom.fulfilled, (state: RoomState, action: ActionInterface) => {
+      .addCase(getRoom.fulfilled, (state: RoomState, action: Action) => {
         state.status = 'Succeeded';
-        state.room = action.payload   
+        state.room = state.rooms.find(
+          (room) => room.id === action.payload
+        );  
       })
       .addCase(getRoom.rejected, (state: RoomState) => {
         state.status = 'Failed';
         console.log("Not able to find the room")
       })
-      .addCase(addRoom.fulfilled, (state: RoomState, action:ActionInterface) => {
+      .addCase(addRoom.fulfilled, (state: RoomState, action:Action) => {
         state.status = 'Succeeded';
         state.rooms = [...state.rooms, action.payload];
       })
@@ -81,7 +62,7 @@ const RoomsSlice = createSlice({
         state.status = 'Failed';
         console.log("Not able to add room")
       })
-      .addCase(deleteRoom.fulfilled, (state:RoomState, action: ActionInterface) => {
+      .addCase(deleteRoom.fulfilled, (state:RoomState, action: Action) => {
         state.status = 'Succeeded';
         state.rooms = state.rooms.filter(room => room.id !== action.payload);
       })
@@ -89,7 +70,7 @@ const RoomsSlice = createSlice({
         state.status = 'Failed';
         console.log("Not able to delete the room")
       })
-      .addCase(editRoom.fulfilled, (state: RoomState, action:ActionInterface) => {
+      .addCase(editRoom.fulfilled, (state: RoomState, action:Action) => {
         state.status = 'Succeeded';
         state.rooms = state.rooms = state.rooms.map(room =>
           room.id === action.payload.id ? action.payload : room,
@@ -97,7 +78,7 @@ const RoomsSlice = createSlice({
       })
       .addCase(editRoom.rejected, (state:RoomState) => {
         state.status = 'Failed';
-        console.log("Not able to edir the room")
+        console.log("Not able to edit the room")
       });
   },
 });

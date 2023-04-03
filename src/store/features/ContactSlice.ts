@@ -2,30 +2,12 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {messageData} from '../../DummyData/messageData';
 import { delay } from './delay';
+import { Action } from '../../Interfaces/interfaces';
+import { ContactState } from '../../Interfaces/ContactDataInterface';
 
-export interface ContactDataExtended {
-  id: string,
-  photo: string,
-  date: string,
-  time: string,
-  full_name: string,
-  email: string,
-  phone_number: string,
-  subject: string,
-}
-
-interface ContactState {
-  contact: [] | ContactDataExtended[],
-  status: 'idle' | 'Loading' | 'Succeeded' | 'Failed'
-}
 const initialState : ContactState = {
   contact: [],
   status: 'idle',
-}
-
-interface ActionInterface {
-  type: string;
-  payload: any;
 }
 
 export const fetchContacts = createAsyncThunk(
@@ -44,7 +26,7 @@ const ContactSlice = createSlice({
       .addCase(fetchContacts.pending, state => {
         state.status = 'Loading';
       })
-      .addCase(fetchContacts.fulfilled, (state: ContactState, action: ActionInterface) => {
+      .addCase(fetchContacts.fulfilled, (state: ContactState, action: Action) => {
         state.status = 'Succeeded';
         state.contact = action.payload;
       })

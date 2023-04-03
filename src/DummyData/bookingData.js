@@ -5,7 +5,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '60-636-6045',
+    id: '60-636-6045',
     order_date: '21/11/2022',
     check_in: '16/08/2023',
     check_out: '10/09/2023',
@@ -18,7 +18,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '70-254-7579',
+    id: '70-254-7579',
     order_date: '11/11/2022',
     check_in: '23/05/2023',
     check_out: '11/07/2023',
@@ -31,7 +31,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '48-718-0097',
+    id: '48-718-0097',
     order_date: '15/04/2022',
     check_in: '21/02/2023',
     check_out: '25/02/2023',
@@ -44,7 +44,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '74-212-9482',
+    id: '74-212-9482',
     order_date: '10/06/2022',
     check_in: '27/09/2023',
     check_out: '28/09/2023',
@@ -57,7 +57,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '76-100-9135',
+    id: '76-100-9135',
     order_date: '11/11/2022',
     check_in: '22/08/2023',
     check_out: '01/01/2024',
@@ -70,7 +70,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '77-630-3254',
+    id: '77-630-3254',
     order_date: '26/08/2022',
     check_in: '07/05/2023',
     check_out: '11/01/2024',
@@ -83,7 +83,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '07-056-8615',
+    id: '07-056-8615',
     order_date: '24/09/2022',
     check_in: '13/11/2023',
     check_out: '23/11/2023',
@@ -96,7 +96,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '99-127-6277',
+    id: '99-127-6277',
     order_date: '15/07/2022',
     check_in: '12/05/2022',
     check_out: '03/02/2024',
@@ -109,7 +109,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '47-137-4044',
+    id: '47-137-4044',
     order_date: '31/08/2022',
     check_in: '30/08/2023',
     check_out: '02/06/2023',
@@ -122,7 +122,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '26-238-2724',
+    id: '26-238-2724',
     order_date: '24/10/2022',
     check_in: '08/05/2023',
     check_out: '04/06/2023',
@@ -135,7 +135,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '42-700-3629',
+    id: '42-700-3629',
     order_date: '15/06/2022',
     check_in: '05/02/2023',
     check_out: '05/03/2023',
@@ -148,7 +148,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '64-944-1863',
+    id: '64-944-1863',
     order_date: '21/10/2022',
     check_in: '12/05/2023',
     check_out: '02/06/2023',
@@ -161,7 +161,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '45-225-2209',
+    id: '45-225-2209',
     order_date: '05/08/2022',
     check_in: '17/04/2023',
     check_out: '18/11/2023',
@@ -174,7 +174,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '28-035-5284',
+    id: '28-035-5284',
     order_date: '05/11/2022',
     check_in: '05/12/2023',
     check_out: '29/12/2023',
@@ -187,7 +187,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '95-290-6881',
+    id: '95-290-6881',
     order_date: '30/11/2022',
     check_in: '29/03/2023',
     check_out: '22/09/2023',
@@ -200,7 +200,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '50-133-9268',
+    id: '50-133-9268',
     order_date: '11/12/2022',
     check_in: '11/07/2023',
     check_out: '20/01/2024',
@@ -213,7 +213,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '36-003-9578',
+    id: '36-003-9578',
     order_date: '16/07/2022',
     check_in: '29/05/2023',
     check_out: '30/05/2023',
@@ -226,7 +226,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '38-817-7057',
+    id: '38-817-7057',
     order_date: '06/01/2023',
     check_in: '10/07/2023',
     check_out: '06/08/2023',
@@ -239,7 +239,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '31-419-9508',
+    id: '31-419-9508',
     order_date: '31/08/2022',
     check_in: '23/06/2023',
     check_out: '30/06/2023',
@@ -252,7 +252,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '64-597-4465',
+    id: '64-597-4465',
     order_date: '27/02/2022',
     check_in: '27/03/2023',
     check_out: '26/06/2023',
@@ -265,7 +265,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '29-802-4349',
+    id: '29-802-4349',
     order_date: '28/07/2022',
     check_in: '09/11/2023',
     check_out: '29/01/2024',
@@ -278,7 +278,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '56-561-0700',
+    id: '56-561-0700',
     order_date: '08/05/2022',
     check_in: '17/02/2023',
     check_out: '30/05/2023',
@@ -291,7 +291,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '71-183-6345',
+    id: '71-183-6345',
     order_date: '09/09/2022',
     check_in: '22/01/2024',
     check_out: '29/01/2024',
@@ -304,7 +304,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '49-754-7669',
+    id: '49-754-7669',
     order_date: '16/04/2022',
     check_in: '12/11/2023',
     check_out: '06/12/2023',
@@ -317,7 +317,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '16-713-6352',
+    id: '16-713-6352',
     order_date: '06/07/2022',
     check_in: '27/05/2023',
     check_out: '31/05/2023',
@@ -330,11 +330,11 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '03-171-4776',
+    id: '03-171-4776',
     order_date: '21/02/2022',
     check_in: '06/08/2023',
     check_out: '05/09/2023',
-    special_request: 'ManingrbookingIda Airport',
+    special_request: 'Maningrida Airport',
     room_type: 'Double Bed',
     room_number: 10,
     status: 'Occupied',
@@ -343,7 +343,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '44-075-0666',
+    id: '44-075-0666',
     order_date: '18/02/2022',
     check_in: '22/05/2023',
     check_out: '04/06/2023',
@@ -356,7 +356,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '16-456-4107',
+    id: '16-456-4107',
     order_date: '07/04/2022',
     check_in: '18/02/2023',
     check_out: '16/05/2023',
@@ -369,7 +369,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '07-080-7962',
+    id: '07-080-7962',
     order_date: '17/12/2022',
     check_in: '18/02/2023',
     check_out: '06/11/2023',
@@ -382,7 +382,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '79-678-7112',
+    id: '79-678-7112',
     order_date: '29/03/2022',
     check_in: '03/06/2023',
     check_out: '31/07/2023',
@@ -395,7 +395,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '14-350-8698',
+    id: '14-350-8698',
     order_date: '05/06/2022',
     check_in: '20/05/2023',
     check_out: '06/07/2023',
@@ -408,7 +408,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '22-368-0129',
+    id: '22-368-0129',
     order_date: '09/10/2022',
     check_in: '17/11/2023',
     check_out: '11/12/2023',
@@ -421,7 +421,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '76-428-6924',
+    id: '76-428-6924',
     order_date: '19/12/2022',
     check_in: '11/04/2023',
     check_out: '29/07/2023',
@@ -434,7 +434,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '04-830-4873',
+    id: '04-830-4873',
     order_date: '13/05/2022',
     check_in: '15/06/2023',
     check_out: '12/12/2023',
@@ -447,7 +447,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '80-849-2372',
+    id: '80-849-2372',
     order_date: '26/10/2022',
     check_in: '09/04/2023',
     check_out: '27/07/2023',
@@ -460,7 +460,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '47-849-6561',
+    id: '47-849-6561',
     order_date: '25/05/2022',
     check_in: '31/12/2023',
     check_out: '18/01/2024',
@@ -473,7 +473,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '56-247-3574',
+    id: '56-247-3574',
     order_date: '11/11/2022',
     check_in: '04/07/2023',
     check_out: '06/01/2024',
@@ -486,7 +486,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '93-669-0778',
+    id: '93-669-0778',
     order_date: '05/09/2022',
     check_in: '25/04/2023',
     check_out: '10/05/2023',
@@ -499,7 +499,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '81-164-9127',
+    id: '81-164-9127',
     order_date: '10/03/2022',
     check_in: '06/06/2023',
     check_out: '16/09/2023',
@@ -512,7 +512,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '32-517-8157',
+    id: '32-517-8157',
     order_date: '20/04/2022',
     check_in: '07/04/2023',
     check_out: '20/08/2023',
@@ -525,7 +525,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '44-958-2579',
+    id: '44-958-2579',
     order_date: '07/12/2022',
     check_in: '29/05/2023',
     check_out: '18/12/2023',
@@ -538,7 +538,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '26-986-8610',
+    id: '26-986-8610',
     order_date: '27/04/2022',
     check_in: '07/11/2023',
     check_out: '10/12/2023',
@@ -551,7 +551,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '69-057-7821',
+    id: '69-057-7821',
     order_date: '26/10/2022',
     check_in: '23/05/2023',
     check_out: '13/06/2023',
@@ -564,7 +564,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '89-227-0521',
+    id: '89-227-0521',
     order_date: '19/08/2022',
     check_in: '20/02/2023',
     check_out: '17/08/2023',
@@ -577,7 +577,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '67-409-1049',
+    id: '67-409-1049',
     order_date: '29/01/2023',
     check_in: '11/07/2023',
     check_out: '09/08/2023',
@@ -590,7 +590,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '15-789-6967',
+    id: '15-789-6967',
     order_date: '20/05/2022',
     check_in: '29/05/2023',
     check_out: '21/09/2023',
@@ -603,7 +603,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '42-345-9542',
+    id: '42-345-9542',
     order_date: '06/07/2022',
     check_in: '08/06/2023',
     check_out: '21/07/2023',
@@ -616,7 +616,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '08-866-0000',
+    id: '08-866-0000',
     order_date: '12/10/2022',
     check_in: '25/10/2023',
     check_out: '10/02/2024',
@@ -629,7 +629,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '47-943-2315',
+    id: '47-943-2315',
     order_date: '08/07/2022',
     check_in: '04/10/2023',
     check_out: '03/12/2023',
@@ -642,7 +642,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '08-069-3382',
+    id: '08-069-3382',
     order_date: '15/06/2022',
     check_in: '09/04/2023',
     check_out: '22/05/2023',
@@ -655,7 +655,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '65-126-6985',
+    id: '65-126-6985',
     order_date: '13/02/2022',
     check_in: '01/07/2023',
     check_out: '25/12/2023',
@@ -668,7 +668,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '24-020-9247',
+    id: '24-020-9247',
     order_date: '28/12/2022',
     check_in: '20/08/2023',
     check_out: '07/09/2023',
@@ -681,7 +681,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '43-505-6619',
+    id: '43-505-6619',
     order_date: '08/11/2022',
     check_in: '04/04/2023',
     check_out: '01/06/2023',
@@ -694,7 +694,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '83-577-9466',
+    id: '83-577-9466',
     order_date: '05/06/2022',
     check_in: '07/09/2023',
     check_out: '15/10/2023',
@@ -707,7 +707,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '20-558-5028',
+    id: '20-558-5028',
     order_date: '11/11/2022',
     check_in: '06/04/2023',
     check_out: '22/01/2024',
@@ -720,7 +720,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '26-507-3292',
+    id: '26-507-3292',
     order_date: '12/05/2022',
     check_in: '13/10/2023',
     check_out: '17/10/2023',
@@ -733,7 +733,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '00-751-1747',
+    id: '00-751-1747',
     order_date: '12/04/2022',
     check_in: '25/12/2023',
     check_out: '04/01/2024',
@@ -746,7 +746,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '19-817-3225',
+    id: '19-817-3225',
     order_date: '01/06/2022',
     check_in: '09/08/2023',
     check_out: '10/02/2024',
@@ -759,7 +759,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '26-552-0458',
+    id: '26-552-0458',
     order_date: '23/01/2023',
     check_in: '10/07/2023',
     check_out: '24/07/2023',
@@ -772,7 +772,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '08-876-6187',
+    id: '08-876-6187',
     order_date: '30/01/2023',
     check_in: '09/12/2023',
     check_out: '18/01/2024',
@@ -785,7 +785,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '04-582-4564',
+    id: '04-582-4564',
     order_date: '21/02/2022',
     check_in: '20/09/2023',
     check_out: '22/01/2024',
@@ -798,7 +798,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '36-377-8581',
+    id: '36-377-8581',
     order_date: '23/08/2022',
     check_in: '18/02/2023',
     check_out: '28/04/2023',
@@ -811,7 +811,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '91-521-4594',
+    id: '91-521-4594',
     order_date: '11/10/2022',
     check_in: '20/02/2023',
     check_out: '30/10/2023',
@@ -824,7 +824,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '08-622-9822',
+    id: '08-622-9822',
     order_date: '27/12/2022',
     check_in: '03/07/2023',
     check_out: '26/08/2023',
@@ -837,7 +837,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '23-653-9565',
+    id: '23-653-9565',
     order_date: '19/09/2022',
     check_in: '25/07/2023',
     check_out: '24/08/2023',
@@ -850,7 +850,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '58-002-7650',
+    id: '58-002-7650',
     order_date: '08/04/2022',
     check_in: '13/11/2023',
     check_out: '14/11/2023',
@@ -863,7 +863,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '41-041-8089',
+    id: '41-041-8089',
     order_date: '07/08/2022',
     check_in: '13/05/2023',
     check_out: '11/11/2023',
@@ -876,7 +876,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '22-988-2003',
+    id: '22-988-2003',
     order_date: '30/11/2022',
     check_in: '07/03/2023',
     check_out: '22/04/2023',
@@ -889,7 +889,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '10-626-7009',
+    id: '10-626-7009',
     order_date: '20/09/2022',
     check_in: '30/04/2023',
     check_out: '09/05/2023',
@@ -902,7 +902,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '62-904-7941',
+    id: '62-904-7941',
     order_date: '27/04/2022',
     check_in: '08/06/2023',
     check_out: '03/10/2023',
@@ -915,7 +915,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '21-917-5433',
+    id: '21-917-5433',
     order_date: '29/05/2022',
     check_in: '13/11/2023',
     check_out: '01/12/2023',
@@ -928,7 +928,7 @@ export const bookingData = [
   {
     full__name: 'Delia Limrick',
     image: faker.image.avatar(),
-    bookingId: '16-993-2973',
+    id: '16-993-2973',
     order_date: '07/03/2022',
     check_in: '14/05/2023',
     check_out: '17/05/2023',
@@ -941,7 +941,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '55-490-2434',
+    id: '55-490-2434',
     order_date: '01/09/2022',
     check_in: '28/02/2023',
     check_out: '18/03/2023',
@@ -954,7 +954,7 @@ export const bookingData = [
   {
     full__name: faker.name.fullName(),
     image: faker.image.avatar(),
-    bookingId: '73-133-3507',
+    id: '73-133-3507',
     order_date: '19/10/2022',
     check_in: '30/08/2023',
     check_out: '29/09/2023',

@@ -4,25 +4,26 @@ import { useAppSelector, useAppDispatch } from '../../../hooks/hook';
 import { Link } from "react-router-dom";
 import Layout from "../../../components/Layout";
 import {ProductTable} from "../../../components/Table/Table1";
-import {fetchRooms, deleteRoom, selectAllRooms,RoomDataExtended} from "../../../store/features/RoomsSlice";
+import {fetchRooms, deleteRoom, selectAllRooms} from "../../../store/features/RoomsSlice";
+import { RoomDataExtended } from '../../../Interfaces/RoomsDataInterface';
 import {ButtonGroup, Tab,Button,Select,Optionsdiv} from "../RoomsStyles"
 
 const types = ['All Rooms', 'Availible Rooms', 'Occupied Rooms'];
 
 function Rooms() {
   const dispatch = useAppDispatch();
-  const {roomsList} = useAppSelector(selectAllRooms);
+  const roomsList = useAppSelector(selectAllRooms);
+  const roomStatus = useAppSelector(state => state.rooms.status);
   const [active, setActive] = useState<any>(types[0]);
   const [filteredResults, setFilteredResults] = useState<RoomDataExtended[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>("Room Nr.");
 
   //fetch data
   useEffect(() => {
-    if (roomsList.length === 0) {
+    if (roomStatus === 'idle') {
       dispatch(fetchRooms())
-      setFilteredResults(roomsList);
     }
-  }, [roomsList, dispatch])
+  }, [roomStatus, dispatch]) 
 
     // DELETE Room
     const onDeleteRoom = (e: Event, id:number) => {
@@ -108,11 +109,11 @@ function Rooms() {
                 value ={index}
                 onClick={() =>{ setActive(type); handleData(index)}}>
                   {type}
-                </Tab>
+              </Tab>
             ))}
           </ButtonGroup>
           <Optionsdiv>
-            <Link to='/rooms/new-room'><Button>New Room</Button></Link>
+            <Link to='/rooms/new-room' style={{textDecoration:"none"}}><Button>New Room</Button></Link>
             <Select onChange={() => setActiveFilter}>
               <option>Room Nr.</option>
               <option>Highest Price Rate</option>

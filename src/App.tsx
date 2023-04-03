@@ -3,7 +3,7 @@ import './App.css';
 import React,  { useReducer, useContext } from 'react';
 import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 import Bookings from './Pages/Bookings/Booking/Bookings';
-import Rooms from './Pages/Rooms/NewRoom/Rooms';
+import Rooms from './Pages/Rooms/EditRoom/Rooms';
 import Contact from './Pages/Contact/Contact';
 import Users from './Pages/Users/Users';
 import Booking from './Pages/Bookings/Booking/Booking';
@@ -58,10 +58,10 @@ function App() {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />
               <Route path="bookings/:id" element={<Booking />} />
-              <Route path="bookings/edit-booking" element={<EditBooking/>}/>
+              <Route path="bookings/edit-booking/:id" element={<EditBooking/>}/>
               <Route path="rooms" element={<Rooms />} />
               <Route path="rooms/new-room" element={<NewRoom />} />
-              <Route path="rooms/edit-room" element={<EditRoom/>}/>
+              <Route path="rooms/edit-room/:id" element={<EditRoom/>}/>
               <Route path="users" element={<Users />}/>
               <Route path="users/new-user" element={<NewUser />} />;
               <Route path="contact" element={<Contact />} />

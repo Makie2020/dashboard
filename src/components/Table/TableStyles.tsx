@@ -91,3 +91,34 @@ export const Img = styled.img `
 export const Th = styled.th `
   height: 65px;
 `
+/*
+export const ButtonDots = (props:any) => {
+  const deleteBooking = props.onDeleteBooking;
+  const navigate = useNavigate();
+  const [open, setOpen] = useState<boolean>(false);
+  const symbol = open ? 'Open' : 'Closed';
+  const toggleButton = () => { 
+    setOpen(!open);
+  };
+  const editBooking = (e:Event) => {
+    e.preventDefault();
+    navigate("/bookings/edit-booking");
+  };
+  
+  return (
+    <div>
+      <button onClick={toggleButton}>
+         {symbol}
+      </button>
+    {setOpen ? (
+      <DropDown>
+        <div>
+          <button onClick={(_e) => {editBooking(props.data.id)}}><BsPencil/> Edit booking</button>
+          <button onClick={(_e) => {deleteBooking(_e, props.data.id)}}> <BsTrash/> Delete booking</button>
+        </div>
+      </DropDown>
+    ) : null}
+    </div>
+  )
+}  
+*/

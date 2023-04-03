@@ -12,6 +12,7 @@ export const Button = styled.button `
   display: flex;
   align-items: center;
   gap: 10px;
+
 `
 export const Select = styled.select`
   font-family:"Poppins";

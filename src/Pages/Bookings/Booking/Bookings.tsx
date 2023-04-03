@@ -10,18 +10,18 @@ const types = ['All Guests', 'Check in', 'Check out', 'In Progress'];
 
 function Bookings() {
   const dispatch = useAppDispatch();
-  const bookings = useAppSelector(selectAllBookings)
-  const bookingsStatus = useAppSelector(state => state.bookings.status)
+  const bookings = useAppSelector(selectAllBookings);
+  const bookingStatus = useAppSelector(state => state.bookings.status);
   const [active, setActive] = useState(types[0]);
   const [filteredResults, setFilteredResults] = useState<string[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
 
   //fetch data
   useEffect(() => {
-    if (bookingsStatus === 'idle') {
+    if (bookingStatus === "idle") {
       dispatch(fetchBookings())
     }
-  }, [bookingsStatus, dispatch])
+  }, [dispatch, bookings])
 
   //UPPDATE BOOKINGS
   useEffect(() => searchItems(""), [bookings])
@@ -56,7 +56,7 @@ function Bookings() {
   const column = [
     { heading: 'Photo', value: 'image' },
     { heading: 'Name', value: 'full__name' },
-    { heading: 'Booking ID', value: 'bookingId' },
+    { heading: 'Booking ID', value: 'id' },
     { heading: 'Check in', value: 'check_in' },
     { heading: 'Check out', value: 'check_out' },
     { heading: 'Special Request', value: 'special_request' },

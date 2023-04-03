@@ -2,59 +2,29 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {bookingData} from '../../DummyData/bookingData';
 import { delay } from './delay';
+import { BookingState } from '../../Interfaces/BookingDataInterface';
+import { Action } from '../../Interfaces/interfaces';
 
-interface BookingDataInterface {
-  full__name: string,
-  image: string,
-  bookingId: string,
-  order_date: string,
-  check_in: string,
-  check_out: string,
-  special_request: string,
-  room_type: string,
-  room_number: number,
-  status: string,
-  price: number,
-}
-
-interface BookingState {
-  bookings: [] | BookingDataInterface[],
-  booking: BookingDataInterface | null | undefined;
-  status: 'idle' | 'Loading' | 'Succeeded' | 'Failed'
-}
 const initialState : BookingState = {
   bookings: [],
   booking: null,
   status: 'idle',
 }
 
-interface ActionInterface {
-  type: string;
-  payload: any;
-}
-
-export const fetchBookings = createAsyncThunk(
-  'bookings/fetchBookings',
-  async (data: {} = bookingData) => {
+export const fetchBookings = createAsyncThunk<any>('bookings/fetchBookings',async (data: any = bookingData) => {
     return await delay(data);
-  },
-);
-export const getBooking = createAsyncThunk('bookings/getBooking', async (idBooking: number) => {
-  return await delay(idBooking);
+});
+export const getBooking = createAsyncThunk('bookings/getBooking', async (id: number) => {
+  return await delay(id);
 });
 
-export const deleteBooking = createAsyncThunk(
-  'bookings/deleteBooking',
-  async (bookingID: number) => {
-    return await delay(bookingID);
-  },
-);
-export const editBooking = createAsyncThunk(
-  'bookings/editBooking',
-  async (idBooking: number) => {
+export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (id: number) => {
+    return await delay(id);
+});
+
+export const editBooking = createAsyncThunk('bookings/editBooking', async (idBooking: number) => {
     return await delay(idBooking);
-  },
-);
+});
 
 const BookingsSlice = createSlice({
   name: 'bookings',
@@ -66,7 +36,7 @@ const BookingsSlice = createSlice({
         state.status = 'Loading';
       })
       .addCase(fetchBookings.fulfilled,
-        (state: BookingState, action: ActionInterface) => {
+        (state: BookingState, action: Action) => {
           state.status = "Succeeded";
           state.bookings = action.payload;
       })        
@@ -74,30 +44,28 @@ const BookingsSlice = createSlice({
         state.status = 'Failed';
         console.log("Not able to load Bookings")
       })
-      .addCase(getBooking.fulfilled, (state: BookingState, action: ActionInterface) => {
+      .addCase(getBooking.fulfilled, (state: BookingState, action: Action) => {
         state.status = 'Succeeded';
         state.booking = state.bookings.find(
-          (booking) => booking.bookingId === action.payload
+          (booking) => booking.id === action.payload
         );
       })
       .addCase(getBooking.rejected, (state:BookingState) => {
         state.status = 'Failed';
         console.log("Not able to load Booking")
       })
-      .addCase(deleteBooking.fulfilled, (state: BookingState, action: ActionInterface) => {
+      .addCase(deleteBooking.fulfilled, (state: BookingState, action: Action) => {
         state.status = 'Succeeded';
-        state.bookings = state.bookings.filter(
-          booking => booking.bookingId !== action.payload,
-        );
+        state.bookings = state.bookings.filter(booking => booking.id !== action.payload);
       })
       .addCase(deleteBooking.rejected, (state: BookingState) => {
         state.status = 'Failed';
         console.log("Not able to delete the Booking")
       })
-      .addCase(editBooking.fulfilled, (state: BookingState, action: ActionInterface) => {
+      .addCase(editBooking.fulfilled, (state: BookingState, action: Action) => {
         state.status = 'Succeeded';
         state.bookings = state.bookings.map((booking) => {
-          return booking.bookingId === action.payload.bookingID
+          return booking.id === action.payload.bookingID
             ? action.payload
             : booking;
         });

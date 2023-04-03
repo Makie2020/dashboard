@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { ButtonGroup,Tab, Optionsdiv, Button, Input, Select } from "./UserStyles";
 import {Layout} from "../../components/Layout";
 import { ProductTable} from "../../components/Table/Table1";
-import { fetchUsers, selectAllUsers, UsersData} from "../../store/features/UsersSlice";
+import { fetchUsers, selectAllUsers} from "../../store/features/UsersSlice";
+import { UsersDataExtended } from '../../Interfaces/UserDataInterface';
 import { HiUserAdd } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../hooks/hook'; 
@@ -15,7 +16,7 @@ function Users() {
   const {users} = useAppSelector(selectAllUsers)
   const usersStatus = useAppSelector(state => state.users.status)
   const [active, setActive] = useState(types[0]);
-  const [filteredResults, setFilteredResults] = React.useState<UsersData[]>([]);
+  const [filteredResults, setFilteredResults] = React.useState<UsersDataExtended[]>([]);
   const [searchInput, setSearchInput] = React.useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("Ascending");
 
@@ -28,10 +29,10 @@ function Users() {
 
   // SORT CONTACTS
   useEffect(() => {
-    let orderedUsers: UsersData[] = [...users];
+    let orderedUsers: UsersDataExtended[] = [...users];
     switch (activeFilter) {
       case "Ascending.":
-        orderedUsers.sort((a: UsersData, b: UsersData) => {
+        orderedUsers.sort((a: UsersDataExtended, b: UsersDataExtended) => {
           const personA: string = a.full_name;
           const personB: string = b.full_name;
             if (personA < personB) {
@@ -44,7 +45,7 @@ function Users() {
           });
           break;
       case "Descending":
-        orderedUsers.sort((a: UsersData, b: UsersData) => {
+        orderedUsers.sort((a: UsersDataExtended, b: UsersDataExtended) => {
         const personA: string = a.full_name;
         const personB: string = b.full_name;
           if (personA > personB) {

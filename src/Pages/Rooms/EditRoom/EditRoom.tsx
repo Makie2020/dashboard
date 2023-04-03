@@ -10,13 +10,14 @@ const EditRoom = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const { id }: any = params;
+  const {id}:any = params;
   const singleRoom = useAppSelector((state:any) => state.rooms.room);
   const [currentRoom, setCurrentRoom] = useState<any>();
   const formTitle ="Edit and update the original room";
 
   useEffect(() => {
     dispatch(getRoom(id));
+    console.log(singleRoom)
     setCurrentRoom(singleRoom);
   }, [singleRoom, dispatch, id]);
 

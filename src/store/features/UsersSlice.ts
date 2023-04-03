@@ -2,33 +2,15 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {usersData} from '../../DummyData/usersData';
 import { delay } from './delay';
-
-export interface UsersData {
-    photo: string,
-    id: string,
-    full_name: string,
-    email: string,
-    start_date: string,
-    description: string,
-    phone_number: string,
-    status: string,
-}
-
-interface UserState {
-  users: [] | string [],
-  status: 'idle' | 'Loading' | 'Succeeded' | 'Failed'
-}
+import { Action } from '../../Interfaces/interfaces';
+import { UserState } from '../../Interfaces/UserDataInterface';
 
 const initialState : UserState = {
   users: [],
   status: 'idle',
 }
-interface ActionInterface {
-  type: string;
-  payload: any;
-}
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async (data: UsersData[]= usersData) => {
+export const fetchUsers = createAsyncThunk<any>('users/fetchUsers', async (data: any = usersData) => {
   return await delay(data);
 });
 
@@ -45,7 +27,7 @@ const UsersSlice = createSlice({
       .addCase(fetchUsers.pending, state => {
         state.status = 'Loading';
       })
-      .addCase(fetchUsers.fulfilled, (state: UserState, action: ActionInterface) => {
+      .addCase(fetchUsers.fulfilled, (state: UserState, action: Action) => {
         state.status = 'Succeeded';
         state.users = action.payload;
       })
@@ -53,7 +35,7 @@ const UsersSlice = createSlice({
         state.status = 'Failed';
         console.log("Not able to load the users")
       })
-      .addCase(newUser.fulfilled, (state: UserState, action: ActionInterface) => {
+      .addCase(newUser.fulfilled, (state: UserState, action: Action) => {
         state.status = 'Succeeded';
         state.users = [...state.users, action.payload];
       })
