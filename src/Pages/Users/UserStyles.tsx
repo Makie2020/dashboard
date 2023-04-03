@@ -62,4 +62,5 @@ export const Optionsdiv = styled.div `
   display:flex;
   justify-content: flex-end;
   margin: 1em 1em;
+  background-color: #FFFFFF;
 `

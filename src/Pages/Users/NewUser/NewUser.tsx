@@ -1,112 +1,69 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { useAppDispatch } from '../../../hooks/hook';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router";
 import { newUser } from '../../../store/features/UsersSlice';
 import Layout from '../../../components/Layout';
-import {Label, CenteredDiv,Button,Input,TextArea,BackgroundDiv, Form, Title} from './NewUserStyles'
+import UserForm from '../../../components/Forms/FormUser';
+import {faker} from '@faker-js/faker';
 
 const NewUser = () => {
-  const dispatch = useAppDispatch();
-  const [name, setName] = useState<string>("");
-  const [id, setId] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  function onCreateUser(e: React.SyntheticEvent){
-    e.preventDefault()
-    const data: any= {name, id,email, date,description,phoneNumber,status,password}
-    dispatch(newUser(data))
-  }
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+  
+    const formTitle = "Please fill the form to create a new user";
+    const [currentUser, setcurrentUser] = useState<any>({
+      photo: '',
+      id: faker.random.numeric(5),
+      full_name: '',
+      email: '',
+      start_date: '',
+      description:
+        '',
+      phone_number: '',
+      status: '',
+    });
+  
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void  => {
+      let name: string = e.target.name;
+      let checked: boolean = e.target.checked;
+      let type: string = e.target.type;
+      let value: string = e.target.value;
+      let valToUpdate: string | string[];
+      if (type === "checkbox") {
+        const newVal = [...currentUser[name]];
+        if (checked) {
+          newVal.push(checked);
+        } else {
+          const index = newVal.indexOf(checked);
+          newVal.splice(index, 1);
+        }
+        valToUpdate = newVal;
+      } else {
+        valToUpdate = value;
+      }
+      setcurrentUser((prevState:string[]) => ({ ...prevState, [name]: valToUpdate }));
+    };
+  
+    const handleCancel = (e: Event) => {
+      e.preventDefault();
+      navigate("/users");
+    };
+  
+    const handleSubmit = () => {
+      dispatch(newUser(currentUser));
+      navigate("/users");
+    };
   return (
-    <Layout name="Users/new user">
-       <BackgroundDiv>
-        <CenteredDiv>
-          <Form onSubmit={onCreateUser}>
-            <Title>New Employee</Title>
-            <div>
-              <Label>Name</Label>
-              <Input 
-                placeholder="Name" 
-                type="text"
-                value ={name}
-                onChange={(e) => setName(e.target.value)}  
-              /> 
-            </div>
-            <div>
-              <Label> Email</Label>
-              <Input 
-                placeholder="Email" 
-                type="email"
-                value ={email}
-                onChange={(e) => setEmail(e.target.value)}  
-              />          
-            </div>
-            <div>
-              <Label>Id</Label>
-              <Input 
-                placeholder="Id" 
-                type="text"
-                value ={id}
-                onChange={(e) => setId(e.target.value)}  
-              />          
-            </div>
-            <div>
-              <Label >Start Date</Label>
-              <Input 
-                placeholder="--/--/----" 
-                type="date"     
-                value ={date}
-                onChange={(e) => setDate(e.target.value)}  
-              />
-            </div>
-            <div>
-              <Label>Description</Label>
-              <TextArea 
-                placeholder="Description" 
-                value ={description}
-                onChange={(e) => setDescription(e.target.value)}  
-              />
-            </div>
-            <div>
-              <Label>Phone Number</Label>
-              <Input 
-                placeholder="Phone Number" 
-                type="text"
-                value ={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}  
-              />
-            </div>
-            <div>
-              <Label>Status</Label>
-              <Input 
-                placeholder="Active/ Inactive"
-                type="text"
-                value ={status}
-                onChange={(e) => setStatus(e.target.value)}  
-              />
-            </div>
-            <div>
-              <Label>Password</Label>
-              <Input 
-                placeholder="Password"
-                type="Password"
-                value ={password}
-                onChange={(e) => setPassword(e.target.value)}  
-              />
-            </div>
-            <div>
-              <Link to="/users"> <Button type='submit' >Add User</Button></Link>
-            </div>
-        </Form>
-        </CenteredDiv>
-      </BackgroundDiv>
-    </Layout>  
-    
+    <Layout name={"Users/new-user"}>    
+      <UserForm
+        formTitle={formTitle}
+        currentUser={currentUser}
+        handleInput={handleInput}
+        handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
+      />  
+    </Layout>
   );
 }
 

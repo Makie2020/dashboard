@@ -13,7 +13,7 @@ const types = ['All Employees', 'Active Employee', 'Inactive Employee'];
 
 function Users() {
   const dispatch = useAppDispatch();
-  const {users} = useAppSelector(selectAllUsers)
+  const usersList = useAppSelector(selectAllUsers)
   const usersStatus = useAppSelector(state => state.users.status)
   const [active, setActive] = useState(types[0]);
   const [filteredResults, setFilteredResults] = React.useState<UsersDataExtended[]>([]);
@@ -29,7 +29,7 @@ function Users() {
 
   // SORT CONTACTS
   useEffect(() => {
-    let orderedUsers: UsersDataExtended[] = [...users];
+    let orderedUsers: UsersDataExtended[] = [...usersList];
     switch (activeFilter) {
       case "Ascending.":
         orderedUsers.sort((a: UsersDataExtended, b: UsersDataExtended) => {
@@ -62,23 +62,22 @@ function Users() {
       break;
     }
     setFilteredResults(orderedUsers);
-  }, [activeFilter, users]);
+  }, [activeFilter, usersList]);
 
 
   //UPPDATE USERS
-  useEffect(() => searchItems(null), [users])
+  useEffect(() => searchItems(null), [usersList])
   
    //SEARCH  
   const searchItems = (searchValue: string | null) => {
     setSearchInput(searchValue)
     if (searchInput !== null) {
-      console.log("User:", users)
-        const filteredData = users.filter((user: any) => {
+        const filteredData = usersList.filter((user: any) => {
             return user.full_name.toLowerCase().includes(searchInput.toLowerCase())
         })
         setFilteredResults(filteredData)
     } else {
-        setFilteredResults(users)
+        setFilteredResults(usersList)
     }
   }
 
@@ -96,20 +95,20 @@ function Users() {
   
    const handleData = (index: number) => {
     if (index === 0){
-      setFilteredResults(users)
+      setFilteredResults(usersList)
     } else if (index === 1) {
-      const filteredUsers = [...users]
+      const filteredUsers = [...usersList]
       const filteredActiveUsers  = filteredUsers.filter((user) =>  user.status === "ACTIVE");
       setFilteredResults(filteredActiveUsers)
     } else if(index === 2) {
-      const InActiveUsers = [...users]
+      const InActiveUsers = [...usersList]
       const filteredInactiveUsers  = InActiveUsers.filter((user) =>  user.status === "INACTIVE");
       setFilteredResults(filteredInactiveUsers)
     }
   };
   return (
     <Layout name="Users">
-      <div>
+      <div style={{backgroundColor: "#FFFFFF"}}>
         <>
           <ButtonGroup>
             {types.map((type, index) => (
@@ -123,7 +122,7 @@ function Users() {
             ))}
           </ButtonGroup>
           <Optionsdiv>
-            <Link to='/users/new-user'><Button><HiUserAdd/> New Employee</Button></Link>
+            <Link to='/users/new-user' style={{textDecoration : "none"}}><Button><HiUserAdd/> New Employee</Button></Link>
             <Input
               placeholder='Search...'
               onChange={(e) => searchItems(e.target.value)}
