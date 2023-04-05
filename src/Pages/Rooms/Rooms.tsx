@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from '../../../hooks/hook';
+import { useAppSelector, useAppDispatch } from '../../hooks/hook';
 import { Link } from "react-router-dom";
-import Layout from "../../../components/Layout";
-import {ProductTable} from "../../../components/Table/Table1";
-import {fetchRooms, deleteRoom, selectAllRooms} from "../../../store/features/RoomsSlice";
-import { RoomDataExtended } from '../../../Interfaces/RoomsDataInterface';
-import {ButtonGroup, Tab,Button,Select,Optionsdiv} from "../RoomsStyles"
+import Layout from "../../components/Layout";
+import {ProductTable} from "../../components/Table/Table1";
+import {fetchRooms, deleteRoom, selectAllRooms} from "../../store/features/RoomsSlice";
+import { RoomDataExtended } from '../../Interfaces/RoomsDataInterface';
+import {ButtonGroup, Tab,Button,Select,Optionsdiv} from "./RoomsStyles"
 
 const types = ['All Rooms', 'Availible Rooms', 'Occupied Rooms'];
 
@@ -16,7 +16,7 @@ function Rooms() {
   const roomStatus = useAppSelector(state => state.rooms.status);
   const [active, setActive] = useState<any>(types[0]);
   const [filteredResults, setFilteredResults] = useState<RoomDataExtended[]>([]);
-  const [activeFilter, setActiveFilter] = useState<string>("Room Nr.");
+  const [ order, setOrder ] = useState('room_number');
 
   //fetch data
   useEffect(() => {
@@ -33,43 +33,18 @@ function Rooms() {
 
   // DROPDOWN
   useEffect(() => {
-    let orderedRooms: RoomDataExtended[] = [...roomsList];
-    switch (activeFilter) {
-      case "Room Nr.":
-        const orderedRoomByNumber = [...roomsList];
-        orderedRooms = orderedRoomByNumber.sort((a:RoomDataExtended, b:RoomDataExtended) => a.room_number - b.room_number);
-        break;
-      case "Highest price first":
-        orderedRooms.sort((a: RoomDataExtended, b: RoomDataExtended) => {
-        const rateA: string = a.price;
-        const rateB: string = b.price;
-          if (rateA > rateB) {
-            return -1;
-          }
-          if (rateA < rateB) {
-            return 1;
-          }
-          return 0;
-        });
-        break;
-      case "Lowest price first":
-        orderedRooms.sort((a: RoomDataExtended, b: RoomDataExtended) => {
-          const rateA: string = a.price;
-          const rateB: string = b.price;
-          if (rateA < rateB) {
-            return -1;
-          }
-          if (rateA > rateB) {
-            return 1;
-          }
-          return 0;
-        });
-        break;
-      default:
-        break;
-    }
-    setFilteredResults(orderedRooms);
-  }, [activeFilter, roomsList]);
+    const roomsOrderBy = [...roomsList];
+    roomsOrderBy.sort((a, b) => {
+        if(a[order] > b[order]) {
+            return 1
+        } else if (a[order] < b[order]) {
+            return -1
+        }
+        return 0
+    });
+    setFilteredResults(roomsOrderBy)
+  }, [order, roomsList])
+
 
    const handleData = (index: number) => {
     if (index === 0){
@@ -114,10 +89,10 @@ function Rooms() {
           </ButtonGroup>
           <Optionsdiv>
             <Link to='/rooms/new-room' style={{textDecoration:"none"}}><Button>New Room</Button></Link>
-            <Select onChange={() => setActiveFilter}>
-              <option>Room Nr.</option>
-              <option>Highest Price Rate</option>
-              <option>Lowest Price Rate</option>
+            <Select value={order} onChange={({ target }) => setOrder(target.value)}>
+              <option value="room_number">Room Number</option>
+              <option value="price">Price</option>
+              <option value="status">Status</option>
             </Select>
           </Optionsdiv>
           <ProductTable data={filteredResults} column={column} rowsPerPage={10} onDeleteRoom={onDeleteRoom}/>     

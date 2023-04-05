@@ -18,7 +18,7 @@ function Users() {
   const [active, setActive] = useState(types[0]);
   const [filteredResults, setFilteredResults] = React.useState<UsersDataExtended[]>([]);
   const [searchInput, setSearchInput] = React.useState<string | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>("Ascending");
+  const [ order, setOrder ] = useState('start_date');
 
   //fetch users
   useEffect(() => {
@@ -29,40 +29,17 @@ function Users() {
 
   // SORT CONTACTS
   useEffect(() => {
-    let orderedUsers: UsersDataExtended[] = [...usersList];
-    switch (activeFilter) {
-      case "Ascending.":
-        orderedUsers.sort((a: UsersDataExtended, b: UsersDataExtended) => {
-          const personA: string = a.full_name;
-          const personB: string = b.full_name;
-            if (personA < personB) {
-              return -1;
-            }
-            if (personA > personB) {
-              return 1;
-            }
-            return 0;
-          });
-          break;
-      case "Descending":
-        orderedUsers.sort((a: UsersDataExtended, b: UsersDataExtended) => {
-        const personA: string = a.full_name;
-        const personB: string = b.full_name;
-          if (personA > personB) {
-            return -1;
-          }
-          if (personA < personB) {
-            return 1;
-          }
-          return 0;
-        });
-        break;
-
-      default:
-      break;
-    }
-    setFilteredResults(orderedUsers);
-  }, [activeFilter, usersList]);
+    const usersOrderBy = [...usersList];
+    usersOrderBy.sort((a, b) => {
+        if(a[order] > b[order]) {
+            return 1
+        } else if (a[order] < b[order]) {
+            return -1
+        }
+        return 0
+    });
+    setFilteredResults(usersOrderBy)
+  }, [order, usersList])
 
 
   //UPPDATE USERS
@@ -127,9 +104,9 @@ function Users() {
               placeholder='Search...'
               onChange={(e) => searchItems(e.target.value)}
            />
-            <Select onChange={() => setActiveFilter}>
-              <option>Ascending</option>
-              <option>Descending</option>
+           <Select value={order} onChange={({ target }) => setOrder(target.value)}>
+              <option value="start_date">Start Date</option>
+              <option value="full_name">Name</option>
             </Select>
           </Optionsdiv>
           <ProductTable data={filteredResults} column={column} rowsPerPage={10}/>     

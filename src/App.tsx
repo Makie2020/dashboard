@@ -3,7 +3,7 @@ import './App.css';
 import React,  { useReducer, useContext } from 'react';
 import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 import Bookings from './Pages/Bookings/Booking/Bookings';
-import Rooms from './Pages/Rooms/EditRoom/Rooms';
+import Rooms from './Pages/Rooms/Rooms';
 import Contact from './Pages/Contact/Contact';
 import Users from './Pages/Users/Users';
 import Booking from './Pages/Bookings/Booking/Booking';

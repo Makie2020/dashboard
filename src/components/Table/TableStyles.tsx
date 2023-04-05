@@ -61,17 +61,21 @@ export const Button = styled.button.attrs(props =>({className: props.className})
 export const DropDown = styled.div`
   background-color: #777777;
   color: #262626;
-  div {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  width: 170px;
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
     background-color: #FFFFFF;
-    button {
+    li {
         display: flex;
         align-items: center;
         gap: 1em;
-        width: 100%;
-        padding: 1em ;
+        padding: 0.5em ;
         border: 0.5px solid black;
         margin-bottom: 0.1em;
         border-radius: 12px;
@@ -91,34 +95,7 @@ export const Img = styled.img `
 export const Th = styled.th `
   height: 65px;
 `
-/*
-export const ButtonDots = (props:any) => {
-  const deleteBooking = props.onDeleteBooking;
-  const navigate = useNavigate();
-  const [open, setOpen] = useState<boolean>(false);
-  const symbol = open ? 'Open' : 'Closed';
-  const toggleButton = () => { 
-    setOpen(!open);
-  };
-  const editBooking = (e:Event) => {
-    e.preventDefault();
-    navigate("/bookings/edit-booking");
-  };
-  
-  return (
-    <div>
-      <button onClick={toggleButton}>
-         {symbol}
-      </button>
-    {setOpen ? (
-      <DropDown>
-        <div>
-          <button onClick={(_e) => {editBooking(props.data.id)}}><BsPencil/> Edit booking</button>
-          <button onClick={(_e) => {deleteBooking(_e, props.data.id)}}> <BsTrash/> Delete booking</button>
-        </div>
-      </DropDown>
-    ) : null}
-    </div>
-  )
-}  
-*/
+export const Container = styled.div `
+  position: relative;
+  display: inline-block;
+`

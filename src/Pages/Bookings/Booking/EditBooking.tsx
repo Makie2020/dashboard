@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
+import Layout from "../../../components/Layout";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../../hooks/hook';
@@ -58,13 +59,16 @@ const EditBooking = () => {
   return !currentBooking ? (
     <div>Loading Page</div> 
     ) : (
-    <BookingForm
-      formTitle={formTitle}
-      currentBooking={currentBooking}
-      handleInput={handleInput}
-      handleSubmit={handleSubmit}
-      handleCancel={handleCancel}
-    />
+      <Layout name="Boookings/edit-booking">
+        <BookingForm
+          formTitle={formTitle}
+          currentBooking={currentBooking}
+          handleInput={handleInput}
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+        />
+      </Layout>
+
   );
 };
 

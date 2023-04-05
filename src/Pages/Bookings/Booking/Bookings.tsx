@@ -15,6 +15,7 @@ function Bookings() {
   const [active, setActive] = useState(types[0]);
   const [filteredResults, setFilteredResults] = useState<string[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [ order, setOrder ] = useState('order_date');
 
   //fetch data
   useEffect(() => {
@@ -42,15 +43,18 @@ function Bookings() {
         setFilteredResults(bookings)
     }
   }
-  // DROPDOWN
-  const sortBookings = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const sortDirection =  (event.target as HTMLInputElement).value;
-    const copyArray= [...bookings];
-    copyArray.sort((a, b) => {
-      return sortDirection === "0" ? a.full_name < b.full_name ? -1 : 1 : 0;
+  useEffect(() => {
+    const bookingsOrderBy = [...bookings];
+    bookingsOrderBy.sort((a, b) => {
+        if(a[order] > b[order]) {
+            return 1
+        } else if (a[order] < b[order]) {
+            return -1
+        }
+        return 0
     });
-    setFilteredResults(copyArray);
-  }
+    setFilteredResults(bookingsOrderBy)
+  }, [order, bookings])
 
   //THEAD
   const column = [
@@ -70,20 +74,20 @@ function Bookings() {
       setFilteredResults(bookings)
     } else if (index === 1) {
       const filteredBoookings = [...bookings]
-      const filteredCheckIn: string [] = filteredBoookings.filter((booking) =>  booking.status === "Available");
+      const filteredCheckIn: string [] = filteredBoookings.filter((booking) => booking.status === "Available");
       setFilteredResults(filteredCheckIn)
     } else if(index === 2) {
       const filteredCheckOut = [...bookings]
-      const filteredCheckOutBookings: string []  = filteredCheckOut.filter((booking) =>  booking.status === "Occupied");
+      const filteredCheckOutBookings: string [] = filteredCheckOut.filter((booking) => booking.status === "Occupied");
       setFilteredResults(filteredCheckOutBookings)
     } else if(index === 3) {
       const filteredProgress = [...bookings]
-      const filteredInProgressBookings  = filteredProgress.filter((booking) =>  booking.status === "In Progress");
+      const filteredInProgressBookings = filteredProgress.filter((booking) => booking.status === "In Progress");
       setFilteredResults(filteredInProgressBookings)
     };
   }
   return (
-    <Layout name="Bookings">
+    <Layout name ="Bookings">
       <Div>
         <>
           <ButtonGroup>
@@ -101,10 +105,12 @@ function Bookings() {
             <Input
               placeholder='Search...'
               onChange={(e: React.ChangeEvent<HTMLInputElement>): void => searchItems(e.target.value)}
-           />
-            <Select defaultValue={1} onChange={() => sortBookings}>
-              <option value={0}>Ascending</option>
-              <option value={1}>Descending</option>
+            />
+            <Select value={order} onChange={({ target }) => setOrder(target.value)}>
+              <option value="order_date">Order Date</option>
+              <option value="full__name">Guest</option>
+              <option value="check_in">Check in</option>
+              <option value="check_out">Check out</option>
             </Select>
           </Optionsdiv>
           <ProductTable data={filteredResults} column={column} rowsPerPage={10} onDeleteBooking={onDeleteBooking}/>     
