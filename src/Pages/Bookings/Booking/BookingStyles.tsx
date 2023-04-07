@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 export const BookingContainer = styled.div `
   display: flex;
   justify-content: center;
@@ -98,9 +98,7 @@ export const RoomDetailText = styled.p`
 export const RoomDetailsFacilitiesBox = styled.div `
   display: flex;
   gap: 1em;
-
 `
-
 export const RoomDetailsFacilitiesButton = styled.button`
   background-color: #E8F2EF;
   color: #135846;
@@ -110,4 +108,119 @@ export const RoomDetailsFacilitiesButton = styled.button`
   border:none ;
   border-radius: 12px;
   padding: 2em;
-`
+  `
+export const SwiperContainer = styled.div`
+  height: 75%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: stretch;
+  .roomData {
+    position: relative;
+    font-family: var(--font-poppins);
+    background: #bdc3c7;
+    background: linear-gradient(to top, #333333, #787878);
+    padding: 2rem ;
+    height: 120px;
+    border-radius: 0 0 1.2rem 0;
+    h2 {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ffffff;
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      color: #d4d4d4;
+      margin-top: 1rem;
+    }
+  }
+  .swiper {
+    height: fit-content;
+  }
+  .swiper-slide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    border-radius: 0 1.2rem 1.2rem 0;
+    height: 100%;
+    width: 100% !important;
+    img {
+      border-radius: 0 1.2rem 0 0;
+      height: 31rem;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .swiper-button-prev {
+    left: 1rem;
+  }
+  .swiper-button-next {
+    right: 1rem;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: 90%;
+    background-color: #c5c5c5;
+    border-radius: 1.2rem;
+    border: 1px solid #FFFFFF;
+    color: white;
+    height: 4rem;
+    width: 4rem;
+    :after {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    :hover {
+      border: 1px solid #ffffff;
+    }
+  }
+`;
+
+export const Tag = styled.div<{ currentStatus: string }>`
+  position: absolute;
+  right: -6rem;
+  top: 2rem;
+  font-family: var(--font-poppins);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 1rem 7rem;
+  transform: rotate(45deg);
+  z-index: 2;
+  ${(props) => {
+    switch (props.currentStatus) {
+      case "Check In":
+        return css`
+          background-color: green;
+        `;
+      case "Available":
+        return css`
+          background-color: green;
+        `;
+      case "Check Out":
+        return css`
+          background-color: red;
+        `;
+      case "Booked":
+        return css`
+          background-color: red;
+        `;
+      case "In Progress":
+        return css`
+          background-color: #fce205;
+          color: #363636;
+        `;
+      default:
+        return css`
+          background-color: pink;
+          color: white;
+        `;
+    }
+  }}
+`;
+

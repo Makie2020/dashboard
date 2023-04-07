@@ -15,7 +15,6 @@ export function ButtonActions(id:any, data: any) {
   };
   const navigate = useNavigate();
   const deleteBooking = data.onDeleteBooking;
-  console.log(data)
   const editBooking = (e: React.MouseEvent<HTMLAnchorElement|HTMLElement>, id: string): void => {
     e.preventDefault();
     navigate(`/bookings/edit-booking/${id}`);

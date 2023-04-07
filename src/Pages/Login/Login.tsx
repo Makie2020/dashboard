@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { Form, Container,Img, Title,Label,Input,Button } from "./LoginStyles.js";
+import { Form, Container,Img, Title,Label,Input,Button} from './LoginStyles';
 import logo from "../../assets/Logo/logo.png";
 import { useAuth } from '../../App';
 

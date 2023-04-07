@@ -13,9 +13,8 @@ export const Container = styled.div `
   align-items: center;
   text-align: center;
 `
-
 export const Form = styled.form `
-  width: 40%;
+  width: 350px;
   border: 1px solid #135846;
   margin:0 auto;
   border:none;
@@ -46,8 +45,10 @@ export const Input = styled.input `
   color: #262626;
   box-shadow: 0px 16px 30px #00000014;
   ::placeholder{
-    padding-left: 2em;
     font-family: "Poppins";
+  }
+  :focus {
+    padding-left: 2em;
   }
 `
 export const Button = styled.button `

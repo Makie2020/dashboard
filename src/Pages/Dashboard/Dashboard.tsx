@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect} from "react";
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
-import styled from "styled-components";
+import {Div1,Div5,Div6,Div7,ContainerDiv, IconConatiner, TextContainer, Number, Text, ReviewTitle,Div8,TitleChart, Square, SquareText, SquareRed, SquareDiv} from './DashboardStyles';
 import Layout from "../../components/Layout";
 import { BiBed } from "react-icons/bi";
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
@@ -11,80 +11,22 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import "./Dashboard.css"
 import { ReviewCards } from "../Contact/ReviewsCard";
 import { fetchContacts } from "../../store/features/ContactSlice";
+import {GroupedBarChart} from '../../components/Chart/Chart';
+import { IGroupedData } from '../../Interfaces/ChartInterfaces';
 
-const ContainerDiv = styled.div `
-  padding: 2em 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: calc(100% - 120px);
-  gap: 2em;
-  background-color: #F8F8F8;
-`
-const Div1 = styled.div `
-  flex: 0 0 22%;
-  height: 105px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 4px 4px #00000005;
-  border-radius: 12px;
-  display:flex;
-  align-items: center;
-  gap: 1em;
-`
-const IconConatiner = styled.div `
-  background-color: #FFEDEC;
-  border-radius: 8px;
-  width: 65px;
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  color: #E23428;
-  margin-left: 1em;
-`
-const TextContainer = styled.div `
-`
-const Number = styled.p `
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 0;
-`
-const Text = styled.p `
-  font-weight: 300;
-  font-size: 14px;
-  color: #787878;
-`
-const Div5 = styled.div `
-  flex: 0 0 46.5%;
-  height: 350px;
-`
-const Div6 = styled.div `
-  flex: 0 0 46.5%;
-  background-color: pink ;
-  height: 350px;
-`
-const Div7 = styled.div `
-  flex: 0 0 96%;
-  background-color: yellow ;
-  height: 350px;
-`
-const Div8 = styled.div `
-  flex: 0 0 96%;
-  height: 350px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 4px 4px #00000005;
-  border-radius: 20px;
-  padding: 1em;
-`
-const ReviewTitle = styled.h1 `
-  color:#393939;
-  font-size: 20px;
-  font-weight: 500;
-`
 function Dashboard() {
   const dispatch = useAppDispatch();
-  const contactStatus = useAppSelector(state => state.contacts.status)
+  const contactStatus = useAppSelector(state => state.contacts.status);
 
+  const GROUPED_BAR_CHART_DATA: IGroupedData[] = [
+    { label: "Sunday", values: [55, 22] },
+    { label: "Monday", values: [33, 8] },
+    { label: "Tuesday", values: [22, 27] },
+    { label: "Wednesday", values: [49, 31] },
+    { label: "Thursday", values: [39, 25] },
+    { label: "Friday", values: [49, 22] },
+    { label: "Saturday", values: [51, 2] }, 
+  ];
   useEffect(() => {
     if (contactStatus === 'idle') {
       dispatch(fetchContacts())
@@ -141,7 +83,20 @@ function Dashboard() {
             { title: 'event 2', date: '2019-04-02' }
           ]}
         /></Div5>
-        <Div6>6</Div6>
+        <Div6>
+          <TitleChart>Reservation Stats</TitleChart>
+          <SquareDiv>
+            <div style={{display:"flex", gap: "2em"}}>
+              <Square/>
+              <SquareText>Check In</SquareText>
+            </div>
+            <div style={{display:"flex", gap: "2em"}}>
+              <SquareRed/>
+              <SquareText>Check Out</SquareText>
+            </div>
+          </SquareDiv>
+          <GroupedBarChart data={GROUPED_BAR_CHART_DATA} />
+        </Div6>
         <Div7>7</Div7>
         <Div8>
           <ReviewTitle>Latest Review by Customers</ReviewTitle>
