@@ -59,6 +59,8 @@ export const TitleChart = styled.div `
   color:#393939;
   padding-top: 1em;
   font-family:"Poppins";
+  font-weight: 600;
+  margin-bottom: 1em;
 `
 export const Square = styled.div `
   width: 20px;
@@ -72,17 +74,33 @@ export const SquareRed = styled.div `
 `
 export const SquareDiv = styled.div `
   display: flex;
-  gap: 30%
+  gap: 4em;
 `
 export const SquareText = styled.div `
   font-family:"Poppins";
   color: #393939;
   font-size: 14px;
+  font-weight: 600;
+`
+export const SquareTextValue = styled.p `
+  font-family:"Poppins";
+  color: #393939;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 2em;
+`
+export const SquareTextSpan = styled.span `
+  font-family:"Poppins";
+  color: #5AD07A;
+  font-size: 12px;
+  margin-left: 1em;
 `
 export const Div7 = styled.div `
   flex: 0 0 96%;
-  background-color: yellow ;
-  height: 350px;
+  background-color: #FFFFFF ;
+  height: 380px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px #00000005;
 `
 export const Div8 = styled.div `
   flex: 0 0 96%;

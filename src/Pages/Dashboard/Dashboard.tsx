@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect} from "react";
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
-import {Div1,Div5,Div6,Div7,ContainerDiv, IconConatiner, TextContainer, Number, Text, ReviewTitle,Div8,TitleChart, Square, SquareText, SquareRed, SquareDiv} from './DashboardStyles';
+import {Div1,Div5,Div6,Div7,ContainerDiv, IconConatiner, TextContainer, Number, Text, ReviewTitle,Div8,TitleChart, Square, SquareText, SquareRed, SquareDiv, SquareTextValue, SquareTextSpan} from './DashboardStyles';
 import Layout from "../../components/Layout";
 import { BiBed } from "react-icons/bi";
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
@@ -13,6 +13,7 @@ import { ReviewCards } from "../Contact/ReviewsCard";
 import { fetchContacts } from "../../store/features/ContactSlice";
 import {GroupedBarChart} from '../../components/Chart/Chart';
 import { IGroupedData } from '../../Interfaces/ChartInterfaces';
+import BookingSchedule from './BookingSchedule/BookingSchedule';
 
 function Dashboard() {
   const dispatch = useAppDispatch();
@@ -86,18 +87,20 @@ function Dashboard() {
         <Div6>
           <TitleChart>Reservation Stats</TitleChart>
           <SquareDiv>
-            <div style={{display:"flex", gap: "2em"}}>
+            <div style={{display:"flex", gap: "1em", justifyContent:"center", alignItems:"center"}}>
               <Square/>
               <SquareText>Check In</SquareText>
+              <SquareTextValue>23,451<SquareTextSpan>+0.4%</SquareTextSpan></SquareTextValue>
             </div>
-            <div style={{display:"flex", gap: "2em"}}>
+            <div style={{display:"flex", gap: "1em", justifyContent:"center", alignItems:"center"}}>
               <SquareRed/>
               <SquareText>Check Out</SquareText>
+              <SquareTextValue>20,441</SquareTextValue>
             </div>
           </SquareDiv>
           <GroupedBarChart data={GROUPED_BAR_CHART_DATA} />
         </Div6>
-        <Div7>7</Div7>
+        <Div7><BookingSchedule/></Div7>
         <Div8>
           <ReviewTitle>Latest Review by Customers</ReviewTitle>
           <ReviewCards/>
