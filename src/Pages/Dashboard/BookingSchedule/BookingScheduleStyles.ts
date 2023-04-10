@@ -8,13 +8,14 @@ export const Title = styled.h1 `
   font-size: 20px;
   font-family:"Poppins";
   line-height: 0;
-  padding: 30px 0 0 30px;
+  padding: 30px 0 15px 30px;
 `
 export const Container = styled.div `
   display: flex;
   gap: 2em;
   justify-content: space-between;
   align-items:center;
+  margin-bottom: 1em;
 `
 export const ContainerDetails = styled.div `
   display:flex;

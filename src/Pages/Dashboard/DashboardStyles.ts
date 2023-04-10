@@ -49,7 +49,7 @@ export const Div5 = styled.div `
 export const Div6 = styled.div `
   background-color: #FFFFFF;
   flex: 0 0 46.5%;
-  height: 350px;
+  height: 380px;
   border-radius: 20px;
   box-shadow:0px 4px 4px #00000005;
   padding-left: 2em;
@@ -98,7 +98,7 @@ export const SquareTextSpan = styled.span `
 export const Div7 = styled.div `
   flex: 0 0 96%;
   background-color: #FFFFFF ;
-  height: 380px;
+  height: 420px;
   border-radius: 20px;
   box-shadow: 0px 4px 4px #00000005;
 `
