@@ -29,6 +29,7 @@ function Users() {
 
   // SORT CONTACTS
   useEffect(() => {
+    console.log(usersList)
     const usersOrderBy = [...usersList];
     usersOrderBy.sort((a, b) => {
         if(a[order] > b[order]) {
@@ -64,6 +65,7 @@ function Users() {
     { heading: 'Name', value: 'full_name' },
     { heading: 'ID', value: 'id' },
     { heading: 'Email', value: 'email' },
+    { heading: 'Position', value: 'position' },
     { heading: 'Start Date', value: 'start_date' },
     { heading: 'Description ', value: 'description' },
     { heading: 'Contact ', value: 'phone_number' },

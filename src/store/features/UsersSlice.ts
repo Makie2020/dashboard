@@ -1,21 +1,23 @@
 /* eslint-disable prettier/prettier */
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {usersData} from '../../DummyData/usersData';
-import { delay } from './delay';
 import { Action } from '../../Interfaces/interfaces';
 import { UserState } from '../../Interfaces/UserDataInterface';
+import { UsersDataExtended } from '../../Interfaces/UserDataInterface';
+import { requestGET, requestPOST } from '../ApiClient';
 
 const initialState : UserState = {
   users: [],
   status: 'idle',
 }
 
-export const fetchUsers = createAsyncThunk<any>('users/fetchUsers', async (data: any = usersData) => {
-  return await delay(data);
+export const fetchUsers = createAsyncThunk<any>('users/fetchUsers', async() => {
+  const dataUsers = await requestGET("http://localhost:3002/users");
+  const data: UsersDataExtended = dataUsers.data;
+  return data;
 });
-
-export const newUser = createAsyncThunk('users/saveNewUser', async (data: string []) => {
-  return await delay(data);
+export const newUser = createAsyncThunk('users/saveNewUser', async(newUser: UsersDataExtended) => {
+  const data = await requestPOST("http://localhost:3002/users", newUser)
+  return data;
 });
 
 const UsersSlice = createSlice({

@@ -8,9 +8,14 @@ export interface Action {
   payload: any;
 }
 
+export interface Body {
+  body: {};
+}
+
+
 export interface AuthState {
   isAuth: boolean;
-  user: string| undefined;
+  name: string| undefined;
   token: string|undefined;
   dispatch?: (action:Action) => void;
 };

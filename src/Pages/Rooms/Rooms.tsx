@@ -29,6 +29,7 @@ function Rooms() {
     const onDeleteRoom = (e: Event, id:number) => {
       e.preventDefault();
       dispatch(deleteRoom(id));
+      setFilteredResults(roomsList); 
     };
 
   // DROPDOWN

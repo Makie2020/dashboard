@@ -16,24 +16,23 @@ import EditRoom from './Pages/Rooms/EditRoom/EditRoom';
 import {ProtectRoute} from "./components/ProtectedRouted"
 import { AuthState, Action } from './Interfaces/interfaces';
 
-const initialState: AuthState = {isAuth: localStorage.getItem('Dashboard') ? true : false, user:"Marieke", token:"test"} 
+const initialState: AuthState = {isAuth: localStorage.getItem('dashboard') ? true : false, name: undefined, token: undefined} 
 
 const AuthReducer = (state: AuthState, action: Action) => {
   switch (action.type) {
     case "LOGIN":
       return {
         ...state,
-        isAuth: action.payload,
+        isAuth: true,
+        name: action.payload.name,
+        token: action.payload.token,
       };
     case "LOGOUT":
       return {
         ...state,
-        isAuth: action.payload,
-      };
-    case "UPDATE":
-      return {
-        ...state,
-        isAuth: action.payload,
+        isAuth: false,
+        name: undefined,
+        token: undefined
       };
     default:
       return state;
@@ -41,18 +40,18 @@ const AuthReducer = (state: AuthState, action: Action) => {
 };
 
 const AuthContext = React.createContext<AuthState>(initialState)
-export const useAuth = () => { return useContext(AuthContext) };
+export const useAuth = () => {return useContext(AuthContext)};
 
 function App() {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   return (
     <div className= "App">
-      <AuthContext.Provider value={{user: state.user, token: state.token, isAuth: state.isAuth, dispatch}}>
+      <AuthContext.Provider value={{name: state.name, token: state.token, isAuth: state.isAuth, dispatch}}>
         <BrowserRouter>
           <Routes>
             <Route
               path="/login"
-              element={state.isAuth ? <Navigate to="/dashboard" /> : <LoginPage />}
+              element={state.isAuth ? <Navigate to="/dashboard" /> : <LoginPage/>}
             />
             <Route path="*" element={<ProtectRoute isAuth={state.isAuth} />}>
               <Route path="dashboard" element={<Dashboard />} />

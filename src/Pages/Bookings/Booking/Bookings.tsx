@@ -60,7 +60,7 @@ function Bookings() {
   const column = [
     { heading: 'Photo', value: 'image' },
     { heading: 'Name', value: 'full__name' },
-    { heading: 'Booking ID', value: 'id' },
+    { heading: 'Booking ID', value: '_id' },
     { heading: 'Check in', value: 'check_in' },
     { heading: 'Check out', value: 'check_out' },
     { heading: 'Special Request', value: 'special_request' },
@@ -74,11 +74,11 @@ function Bookings() {
       setFilteredResults(bookings)
     } else if (index === 1) {
       const filteredBoookings = [...bookings]
-      const filteredCheckIn: string [] = filteredBoookings.filter((booking) => booking.status === "Available");
+      const filteredCheckIn: string [] = filteredBoookings.filter((booking) => booking.status === "Check In");
       setFilteredResults(filteredCheckIn)
     } else if(index === 2) {
       const filteredCheckOut = [...bookings]
-      const filteredCheckOutBookings: string [] = filteredCheckOut.filter((booking) => booking.status === "Occupied");
+      const filteredCheckOutBookings: string [] = filteredCheckOut.filter((booking) => booking.status === "Check Out");
       setFilteredResults(filteredCheckOutBookings)
     } else if(index === 3) {
       const filteredProgress = [...bookings]

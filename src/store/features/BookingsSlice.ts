@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {bookingData} from '../../DummyData/bookingData';
-import { delay } from './delay';
-import { BookingState } from '../../Interfaces/BookingDataInterface';
+import { BookingState, BookingDataInterface } from '../../Interfaces/BookingDataInterface';
 import { Action } from '../../Interfaces/interfaces';
+import {requestGET, requestDELETE, requestPUT} from '../ApiClient';
 
 const initialState : BookingState = {
   bookings: [],
@@ -11,20 +10,29 @@ const initialState : BookingState = {
   status: 'idle',
 }
 
-export const fetchBookings = createAsyncThunk<any>('bookings/fetchBookings',async (data: any = bookingData) => {
-    return await delay(data);
+export const fetchBookings = createAsyncThunk<any>('bookings/fetchBookings', async() => {
+  const dataBooking = await requestGET("http://localhost:3002/bookings");
+  const data: BookingDataInterface = dataBooking.data;
+  return data;
 });
-export const getBooking = createAsyncThunk('bookings/getBooking', async (id: number) => {
-  return await delay(id);
+export const getBooking = createAsyncThunk('bookings/getBooking', async (id: any) => {
+  const dataBooking = await requestGET(`http://localhost:3002/bookings/${id}`);
+  const data: BookingDataInterface = dataBooking.data;
+  console.log(data);
+  return data;
 });
 
-export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (id: number) => {
-    return await delay(id);
+export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (id: any) => {
+  const dataBooking = await requestDELETE(`http://localhost:3002/bookings/${id}`);
+  return dataBooking
 });
 
-export const editBooking = createAsyncThunk('bookings/editBooking', async (idBooking: number) => {
-    return await delay(idBooking);
-});
+export const editBooking = createAsyncThunk("bookings/EditBooking", async (currentBooking: BookingDataInterface) => {
+    const data = await requestPUT(`http://localhost:3002/bookings/${currentBooking.id}`, currentBooking);
+    console.log(data)
+    return data
+  }
+);
 
 const BookingsSlice = createSlice({
   name: 'bookings',
@@ -35,20 +43,20 @@ const BookingsSlice = createSlice({
       .addCase(fetchBookings.pending, state => {
         state.status = 'Loading';
       })
-      .addCase(fetchBookings.fulfilled,
-        (state: BookingState, action: Action) => {
-          state.status = "Succeeded";
+      .addCase(fetchBookings.fulfilled,(state: BookingState, action: Action) => {
+          state.status = 'Succeeded';
           state.bookings = action.payload;
       })        
       .addCase(fetchBookings.rejected, (state: BookingState) => {
         state.status = 'Failed';
         console.log("Not able to load Bookings")
       })
+      .addCase(getBooking.pending, state => {
+        state.booking = undefined;
+      })
       .addCase(getBooking.fulfilled, (state: BookingState, action: Action) => {
         state.status = 'Succeeded';
-        state.booking = state.bookings.find(
-          (booking) => booking.id === action.payload
-        );
+        state.booking = action.payload;
       })
       .addCase(getBooking.rejected, (state:BookingState) => {
         state.status = 'Failed';
@@ -65,7 +73,7 @@ const BookingsSlice = createSlice({
       .addCase(editBooking.fulfilled, (state: BookingState, action: Action) => {
         state.status = 'Succeeded';
         state.bookings = state.bookings.map((booking) => {
-          return booking.id === action.payload.bookingID
+          return booking.id === action.payload.id
             ? action.payload
             : booking;
         });

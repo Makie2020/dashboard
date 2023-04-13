@@ -54,6 +54,17 @@ const UserForm= ({
               ></Input>
             </InputContainer>
             <InputContainer>
+              <RadioDescription>ID</RadioDescription>
+              <Input
+                type="number"
+                className="input-user"
+                name="id"
+                value={currentUser.id}
+                placeholder="id"
+                onChange={handleInput}
+              ></Input>
+            </InputContainer>
+            <InputContainer>
               <RadioDescription>Full Name</RadioDescription>
               <Input
                 required
@@ -68,13 +79,56 @@ const UserForm= ({
             <InputContainer>
               <RadioDescription>Email</RadioDescription>
               <Input
-                type="text"
+                type="email"
                 className="input-user"
                 name="email"
                 value={currentUser.email}
                 placeholder="...@gmail.com"
                 onChange={handleInput}
               ></Input>
+            </InputContainer>
+            <InputContainer>
+              <RadioDescription>Position</RadioDescription>
+              <RadioInput
+                required
+                type="radio"
+                id=" manager"
+                value="Hotel Manager"
+                name="position"
+                onClick={handleInput}
+                defaultChecked={currentUser.position === "Hotel Manager"}
+              />
+              <RadioLabel htmlFor="manager">Hotel Manager</RadioLabel>
+              <RadioInput
+                required
+                type="radio"
+                id="reception"
+                value="Reception"
+                name="position"
+                onClick={handleInput}
+                defaultChecked={currentUser.position === "Reception"}
+              />
+              <RadioLabel htmlFor="reception">Reception</RadioLabel>
+              <RadioInput
+                required
+                type="radio"
+                id="housekeeping"
+                value="Housekeeping"
+                name="position"
+                onClick={handleInput}
+                defaultChecked={currentUser.position === "Housekeeping"}
+              />
+              <RadioLabel htmlFor="reception">Housekeeping</RadioLabel>
+              <RadioInput
+                required
+                type="radio"
+                id="animation"
+                value="Animation"
+                name="position"
+                onClick={handleInput}
+                defaultChecked={currentUser.position === "Animation"}
+              />
+              <RadioLabel htmlFor="reception">Animation</RadioLabel>
             </InputContainer>
             <InputContainer>
               <RadioDescription>Start Date</RadioDescription>
@@ -106,6 +160,17 @@ const UserForm= ({
                 className="input-user"
                 name="phone_number"
                 value={currentUser.phone_number}
+                placeholder=""
+                onChange={handleInput}
+              ></Input>
+            </InputContainer>
+            <InputContainer>
+              <RadioDescription>Password</RadioDescription>
+              <Input
+                type="text"
+                className="input-user"
+                name="password"
+                value={currentUser.password}
                 placeholder=""
                 onChange={handleInput}
               ></Input>

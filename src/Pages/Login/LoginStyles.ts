@@ -51,7 +51,7 @@ export const Input = styled.input `
     padding-left: 2em;
   }
 `
-export const Button = styled.button `
+export const Button = styled.div `
   border-radius: 12px;
   border: none;
   width: 215px;
@@ -60,4 +60,7 @@ export const Button = styled.button `
   font-family: "Poppins";
   color: #FFFFFF;
   margin-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content:center;
 `

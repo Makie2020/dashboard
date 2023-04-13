@@ -31,7 +31,7 @@ export function ReviewCards (){
      <ReviewContainer>
       {contacts.map((data: any) => (
         <Review key={data.id} id={data.id} onClick={() => handleOpen(data.id)}>
-          <ReviewText>{data.subject}</ReviewText>
+          <ReviewText>{data.description}</ReviewText>
           <ReviewData>
             <img alt="person" src={data.photo}></img>
             <div>

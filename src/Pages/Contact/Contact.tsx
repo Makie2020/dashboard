@@ -92,9 +92,9 @@ function Contact() {
   //THEAD
   const column = [
     { heading: 'ID', value: 'id' },
-    { heading: 'Date', value: 'date' },
+    { heading: 'Date', value: 'start_date' },
     { heading: 'Customer', value: 'full_name' },
-    { heading: 'Comment', value: 'subject' },
+    { heading: 'Comment', value: 'description' },
     { heading: 'Action', value: 'actions' },
   ]
   const handleArchivedClick = (id: number) => {

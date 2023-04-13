@@ -1,21 +1,20 @@
 /* eslint-disable prettier/prettier */
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {messageData} from '../../DummyData/messageData';
-import { delay } from './delay';
 import { Action } from '../../Interfaces/interfaces';
 import { ContactState } from '../../Interfaces/ContactDataInterface';
+import {requestGET } from '../ApiClient';
+import { ContactDataExtended } from '../../Interfaces/ContactDataInterface';
 
 const initialState : ContactState = {
   contact: [],
   status: 'idle',
 }
 
-export const fetchContacts = createAsyncThunk(
-  'contact/fetchContacts',
-  async (data: {} = messageData) => {
-    return await delay(data);
-  },
-);
+export const fetchContacts = createAsyncThunk<any>('contact/fetchContacts', async() => {
+  const dataContact = await requestGET("http://localhost:3002/contact");
+  const data: ContactDataExtended = dataContact.data;
+  return data;
+});
 
 const ContactSlice = createSlice({
   name: 'contacts',
