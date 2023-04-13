@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {faker} from '@faker-js/faker';
 
 export const usersData = [

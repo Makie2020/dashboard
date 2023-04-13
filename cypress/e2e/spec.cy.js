@@ -8,7 +8,7 @@ describe('login succesfull', () => {
   })
   it('login successfull', () => {
     cy.visit('http://localhost:3000/')
-    cy.get('input[name=username]').type("Marieke")
+    cy.get('input[name=user]').type("Marieke")
     cy.get('input[name=token]').type("test")
     cy.get('button').click();
     cy.location().should((loc) => {
@@ -27,7 +27,7 @@ describe('login succesfull', () => {
   })
   it('login not successfull with wrong user', () => {
     cy.visit('http://localhost:3000/')
-    cy.get('input[name=username]').type("Aaron")
+    cy.get('input[name=user]').type("Aaron")
     cy.get('input[name=token]').type("test")
     cy.get('button').click();
     cy.location().should((loc) => {
