@@ -26,23 +26,23 @@ export const ProductTable = (props: any)  => {
     const TableRow = (props: any) => (
     <tr>      
       {props.column.map((columnItem: any) => {
-        let td = <td key={props.data.id}/>;
+        let td = <td key={props.data.value}/>;
         if (columnItem.heading === "Status") {
-          td = <td key={props.data.id}><Button value={props.data[`${columnItem.value}`]}>{props.data[`${columnItem.value}`]}</Button></td>
+          td = <td key={props.data.value}><Button value={props.data[`${columnItem.value}`]}>{props.data[`${columnItem.value}`]}</Button></td>
         } else if (columnItem.heading === "Photo"){
-          td = <td key={props.data.id}><Img src= {props.data[`${columnItem.value}`]}/></td>
+          td = <td key={props.data.value}><Img src= {props.data[`${columnItem.value}`]}/></td>
         } else if (columnItem.heading === "Special Request"){
-          td = <td key={props.data.id}><ButtonNotes value={props.data[`${columnItem.value}`]}></ButtonNotes></td>
+          td = <td key={props.data.value}><ButtonNotes value={props.data[`${columnItem.value}`]}></ButtonNotes></td>
         } else if (columnItem.heading === "Action"){
-          td = <td key={props.data.id}><Button value={props.data[`${columnItem.value}`]} onClick={(_e) => emitId(props.data.id)}>Archive</Button></td>
+          td = <td key={props.data.value}><Button value={props.data[`${columnItem.value}`]} onClick={(_e) => emitId(props.data.id)}>Archive</Button></td>
         } else if (columnItem.heading === "Booking ID"){
-          td = <td key={props.data.id} onClick={() => {goToBooking(props.data.id)}}>{props.data[`${columnItem.value}`]}</td>
+          td = <td key={props.data.value} onClick={() => {goToBooking(props.data.id)}}>{props.data[`${columnItem.value}`]}</td>
         } else if  (columnItem.heading === "Actions Booking") {
-          td = <td key={props.data.id}><ButtonActions id={props.data.id} data={data}/></td> 
+          td = <td key={props.data.value}><ButtonActions id={props.data.id} data={data}/></td> 
         } else if (columnItem.heading === "Actions Room") {
-          td = <td key={props.data.id}><ButtonActionsRoom id={props.data.id} data={data}/></td> 
+          td = <td key={props.data.value}><ButtonActionsRoom id={props.data.id} data={data}/></td> 
         } else {
-            td = <td key={props.data.check_in}>{props.data[`${columnItem.value}`]}</td>
+            td = <td key={props.data.value}>{props.data[`${columnItem.value}`]}</td>
         }
         return td;
         })}
@@ -58,7 +58,7 @@ export const ProductTable = (props: any)  => {
           </tr>
         </thead>
         <tbody>
-          {currentRecords.map((item: any) => <TableRow data={item} column={props.column} key={item.id} />)}
+          {currentRecords.map((item: any, i: any) => <TableRow data={item} column={props.column} key={i} />)}
         </tbody>
       </StyledTable>
       <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>

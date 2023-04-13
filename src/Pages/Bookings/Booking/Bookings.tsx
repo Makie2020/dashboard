@@ -31,6 +31,7 @@ function Bookings() {
   const onDeleteBooking = (e: Event, id: number) => {
     e.preventDefault();
     dispatch(deleteBooking(id));
+    setFilteredResults(bookings)
   };
 
   //SEARCH  

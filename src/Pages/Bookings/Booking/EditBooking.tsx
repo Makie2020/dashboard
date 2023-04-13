@@ -18,9 +18,8 @@ const EditBooking = () => {
 
   useEffect(() => {
     dispatch(getBooking(id));
-    console.log(singleBooking)
     setCurrentBooking(singleBooking);
-  }, [singleBooking, dispatch, id]);
+  }, []);
 
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void  => {

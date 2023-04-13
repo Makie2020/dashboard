@@ -18,7 +18,6 @@ export const fetchBookings = createAsyncThunk<any>('bookings/fetchBookings', asy
 export const getBooking = createAsyncThunk('bookings/getBooking', async (id: any) => {
   const dataBooking = await requestGET(`http://localhost:3002/bookings/${id}`);
   const data: BookingDataInterface = dataBooking.data;
-  console.log(data);
   return data;
 });
 
@@ -28,9 +27,8 @@ export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (i
 });
 
 export const editBooking = createAsyncThunk("bookings/EditBooking", async (currentBooking: BookingDataInterface) => {
-    const data = await requestPUT(`http://localhost:3002/bookings/${currentBooking.id}`, currentBooking);
-    console.log(data)
-    return data
+  const data = await requestPUT(`http://localhost:3002/bookings/${currentBooking.id}`, currentBooking);
+  return data
   }
 );
 

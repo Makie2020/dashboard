@@ -19,7 +19,7 @@ function Booking() {
   useEffect(() => {
     dispatch(getBooking(id));
     setCurrentBooking(booking);
-  }, [booking,dispatch, id]);
+  }, [dispatch, id]);
 
   if (currentBooking) {
     return (
@@ -51,7 +51,7 @@ function Booking() {
             <ContainerRoomDetails>
               <div>
                 <RoomDetailsTitle>Room Info</RoomDetailsTitle>
-                <RoomDetailsData>Deluxe Z - 002424</RoomDetailsData>
+                <RoomDetailsData>{currentBooking.room_type}</RoomDetailsData>
               </div>
               <div>
                 <RoomDetailsTitle>Price</RoomDetailsTitle>
@@ -62,11 +62,9 @@ function Booking() {
             </RoomDetailText>
             <RoomDetailsTitle>Facilities</RoomDetailsTitle>
             <RoomDetailsFacilitiesBox>
-              <RoomDetailsFacilitiesButton>2 Bathroom</RoomDetailsFacilitiesButton>
-              <RoomDetailsFacilitiesButton>Free Wifi</RoomDetailsFacilitiesButton>
-              <RoomDetailsFacilitiesButton>Air Conditioning</RoomDetailsFacilitiesButton>
-              <RoomDetailsFacilitiesButton>Television</RoomDetailsFacilitiesButton>
-              <RoomDetailsFacilitiesButton>4 Bed Space</RoomDetailsFacilitiesButton>
+              {currentBooking.amenities.map((amenity) => (
+                <RoomDetailsFacilitiesButton key={amenity}>{amenity}</RoomDetailsFacilitiesButton>
+              ))}
             </RoomDetailsFacilitiesBox>
           </div>
           <div style={{flex: "0 0 40%}"}}>
