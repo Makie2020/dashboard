@@ -40,7 +40,7 @@ export const Button = styled.button.attrs(props =>({className: props.className})
   background-color: #FFEDEC;
     color: #E23428;
   `};
-  ${props => (props.value ==="Occupied") && css`
+  ${props => (props.value ==="Booked") && css`
     background-color: #FFEDEC;
     color: #E23428;
   `};

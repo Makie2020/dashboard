@@ -56,7 +56,7 @@ function Rooms() {
       setFilteredResults(filteredAvailibleRooms)
     } else if(index === 2) {
       const filteredOccupied = [...roomsList]
-      const filteredOccupiedRooms  = filteredOccupied.filter((room:RoomDataExtended) =>  room.status === "Occupied");
+      const filteredOccupiedRooms  = filteredOccupied.filter((room:RoomDataExtended) =>  room.status === "Booked");
       setFilteredResults(filteredOccupiedRooms)
     }
   };

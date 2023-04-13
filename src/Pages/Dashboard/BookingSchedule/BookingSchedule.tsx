@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
 import {Container, Title,ContainerDetails, NameDetail, TimeDetail, DetailDate, TitleDetail, Image, ImageDetail,DetailDateBooked, ContainerBooked, DetailOccupied} from "./BookingScheduleStyles";
+import room from "../../../assets/images/Room1.jpg";
+import room2 from "../../../assets/images/Room2.jpg"
 
 function BookingSchedule() {
   return (
@@ -8,7 +10,7 @@ function BookingSchedule() {
       <Title>Recent Booking Schedule</Title>
       <Container>
         <div style={{display:"flex", gap: "3em"}}>
-          <Image alt='Room'/>
+          <Image alt='Room' src={room}/>
           <div>
             <TitleDetail>Queen Bed A-12324</TitleDetail>
             <ContainerDetails>
@@ -22,7 +24,7 @@ function BookingSchedule() {
       </Container>
       <Container>
         <div style={{display:"flex", gap: "3em"}}>
-          <Image alt='Room'/>
+          <Image alt='Room' src={room2}/>
           <div>
             <TitleDetail>Deluxe Room B-1324</TitleDetail>
             <ContainerDetails>
@@ -40,7 +42,7 @@ function BookingSchedule() {
       </Container>
       <Container>
         <div style={{display:"flex", gap: "3em"}}>
-          <Image alt='Room'/>
+          <Image alt='Room' src={room}/>
           <div>
             <TitleDetail>King Big C-2445</TitleDetail>
             <ContainerDetails>
