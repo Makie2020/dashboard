@@ -76,7 +76,7 @@ const RoomForm = ({
                 type="text"
                 className="input-user"
                 name="photo2"
-                value={currentRoom.photo2}
+                value={currentRoom.imageTwo}
                 placeholder="Second photo URL"
                 onChange={handleInput}
               ></Input>
@@ -87,7 +87,7 @@ const RoomForm = ({
                 type="text"
                 className="input-user"
                 name="photo3"
-                value={currentRoom.photo3}
+                value={currentRoom.imageThree}
                 placeholder="Third photo URL"
                 onChange={handleInput}
               ></Input>
@@ -98,7 +98,7 @@ const RoomForm = ({
                 type="text"
                 className="input-user"
                 name="photo4"
-                value={currentRoom.photo4}
+                value={currentRoom.imageFour}
                 placeholder="Fourth photo URL"
                 onChange={handleInput}
               ></Input>
@@ -109,7 +109,7 @@ const RoomForm = ({
                 type="text"
                 className="input-user"
                 name="photo5"
-                value={currentRoom.photo5}
+                value={currentRoom.imageFive}
                 placeholder="Fifth photo URL"
                 onChange={handleInput}
               ></Input>
@@ -274,13 +274,13 @@ const RoomForm = ({
               <RadioInput
                 required
                 type="radio"
-                id="occupied"
-                value="Occupied"
+                id="booked"
+                value="Booked"
                 name="status"
                 onClick={handleInput}
-                defaultChecked={currentRoom.status === "Occupied"}
+                defaultChecked={currentRoom.status === "Booked"}
               />
-              <RadioLabel htmlFor="occupied">Occupied</RadioLabel>
+              <RadioLabel htmlFor="occupied">Booked</RadioLabel>
             </InputContainer>
             <div
               style={{

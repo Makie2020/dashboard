@@ -23,12 +23,12 @@ export const getBooking = createAsyncThunk('bookings/getBooking', async (id: any
 
 export const deleteBooking = createAsyncThunk('bookings/deleteBooking', async (id: any) => {
   const dataBooking = await requestDELETE(`http://localhost:3002/bookings/${id}`);
-  return dataBooking
+  return dataBooking;
 });
 
 export const editBooking = createAsyncThunk("bookings/EditBooking", async (currentBooking: BookingDataInterface) => {
   const data = await requestPUT(`http://localhost:3002/bookings/${currentBooking.id}`, currentBooking);
-  return data
+  return data;
   }
 );
 

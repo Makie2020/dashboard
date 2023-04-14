@@ -21,7 +21,6 @@ const EditBooking = () => {
     setCurrentBooking(singleBooking);
   }, []);
 
-
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void  => {
     let name: string = e.target.name;
     let checked: boolean = e.target.checked;

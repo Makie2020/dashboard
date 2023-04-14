@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../../hooks/hook';
 import { getRoom, editRoom } from '../../../store/features/RoomsSlice';
 import RoomForm from "../../../components/Forms/FormRoom";
+import Layout from '../../../components/Layout';
 
 const EditRoom = () => {
   const dispatch = useAppDispatch();
@@ -17,9 +18,8 @@ const EditRoom = () => {
 
   useEffect(() => {
     dispatch(getRoom(id));
-    console.log(singleRoom)
     setCurrentRoom(singleRoom);
-  }, [singleRoom, dispatch, id]);
+  }, [dispatch,id]);
 
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void  => {
@@ -58,13 +58,15 @@ const EditRoom = () => {
   return !currentRoom ? (
     <div>Loading Page</div> 
     ) : (
-    <RoomForm
-      formTitle={formTitle}
-      currentRoom={currentRoom}
-      handleInput={handleInput}
-      handleSubmit={handleSubmit}
-      handleCancel={handleCancel}
-    />
+    <Layout name="Boookings/edit-rooms">
+      <RoomForm
+        formTitle={formTitle}
+        currentRoom={currentRoom}
+        handleInput={handleInput}
+        handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
+      />
+    </Layout>  
   );
 };
 

@@ -16,19 +16,31 @@ const SwiperBooking = ({data}) =>{
     >
       <SwiperSlide className="slider-container">
         <img
-          src={data.imageTwo}
+          src={data.imageRoom}
           alt="Hotel Room"
         />
       </SwiperSlide>
       <SwiperSlide className="slider-container">
         <img
-           src={data.imageThree}
+           src={data.imageRoomTwo}
           alt="Hotel Room"
         />
       </SwiperSlide>
       <SwiperSlide className="slider-container">
         <img
-          src={data.imageThree}
+          src={data.imageRoomThree}
+          alt="Hotel Room"
+        />
+      </SwiperSlide>
+      <SwiperSlide className="slider-container">
+        <img
+          src={data.imageRoomFour}
+          alt="Hotel Room"
+        />
+      </SwiperSlide>
+      <SwiperSlide className="slider-container">
+        <img
+          src={data.imageRoomFive}
           alt="Hotel Room"
         />
       </SwiperSlide>

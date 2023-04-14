@@ -27,11 +27,11 @@ export const addRoom = createAsyncThunk('rooms/addRoom', async (newRoom: RoomDat
 });
 export const deleteRoom = createAsyncThunk('rooms/deleteRoom', async (id: number) => {
   const dataRoom = await requestDELETE(`http://localhost:3002/rooms/${id}`);
-  return dataRoom
+  return dataRoom;
 });
 export const editRoom = createAsyncThunk('rooms/editRoom', async (currentRoom: RoomDataExtended) => {
   const data = await requestPUT(`http://localhost:3002/rooms/${currentRoom.id}`, currentRoom);
-  return data
+  return data;
 });
 
 const RoomsSlice = createSlice({
@@ -53,9 +53,7 @@ const RoomsSlice = createSlice({
       })
       .addCase(getRoom.fulfilled, (state: RoomState, action: Action) => {
         state.status = 'Succeeded';
-        state.room = state.rooms.find(
-          (room) => room.id === action.payload
-        );  
+        state.room = action.payload
       })
       .addCase(getRoom.rejected, (state: RoomState) => {
         state.status = 'Failed';

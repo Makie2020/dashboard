@@ -15,7 +15,6 @@ export function ButtonActionsRoom(id:any, data: any) {
   };
   const navigate = useNavigate();
   const deleteRoom = data.onDeleteRoom;
-  console.log(data)
   const editRoom = (e: React.MouseEvent<HTMLAnchorElement|HTMLElement>, id: string): void => {
     e.preventDefault();
     navigate(`/rooms/edit-room/${id}`);
