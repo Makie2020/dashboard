@@ -2,7 +2,10 @@
 import React from "react";
 import {Container, Title,ContainerDetails, NameDetail, TimeDetail, DetailDate, TitleDetail, Image, ImageDetail,DetailDateBooked, ContainerBooked, DetailOccupied} from "./BookingScheduleStyles";
 import room from "../../../assets/images/Room1.jpg";
-import room2 from "../../../assets/images/Room2.jpg"
+import room2 from "../../../assets/images/Room2.jpg";
+import person from "../../../assets/images/Person.jpg";
+import person1 from "../../../assets/images/Person2.jpg";
+import person2 from "../../../assets/images/Person3.jpg";
 
 function BookingSchedule() {
   return (
@@ -14,7 +17,7 @@ function BookingSchedule() {
           <div>
             <TitleDetail>Queen Bed A-12324</TitleDetail>
             <ContainerDetails>
-                <ImageDetail></ImageDetail>
+                <ImageDetail src={person}></ImageDetail>
                 <NameDetail>James Sukardi</NameDetail>
                 <TimeDetail>12min ago</TimeDetail>
             </ContainerDetails>
@@ -28,7 +31,7 @@ function BookingSchedule() {
           <div>
             <TitleDetail>Deluxe Room B-1324</TitleDetail>
             <ContainerDetails>
-                <ImageDetail></ImageDetail>
+                <ImageDetail src={person1}></ImageDetail>
                 <NameDetail>Angela Moss</NameDetail>
                 <TimeDetail>12min ago</TimeDetail>
             </ContainerDetails>
@@ -46,7 +49,7 @@ function BookingSchedule() {
           <div>
             <TitleDetail>King Big C-2445</TitleDetail>
             <ContainerDetails>
-                <ImageDetail></ImageDetail>
+                <ImageDetail src={person2}></ImageDetail>
                 <NameDetail>Geovanny</NameDetail>
                 <TimeDetail>12min ago</TimeDetail>
             </ContainerDetails>

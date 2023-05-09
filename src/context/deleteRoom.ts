@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */  
+/*
 import React from 'react';
 import { useAppDispatch } from '../hooks/hook';
 import {deleteRoom} from "../../store/features/RoomsSlice";
 
-
+/*
 const onDeleteRoom = (e: Event, id:number) => {
   const dispatch = useAppDispatch();
   e.preventDefault();
@@ -12,4 +13,4 @@ const onDeleteRoom = (e: Event, id:number) => {
 };
 
 
-export const deleteRoomContext = React.createContext(onDeleteRoom);
+export const deleteRoomContext = React.createContext(onDeleteRoom);*/

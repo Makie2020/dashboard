@@ -26,11 +26,10 @@ function Rooms() {
   }, [roomStatus, dispatch]) 
 
     // DELETE Room
-    const onDeleteRoom = (e: Event, id:number) => {
-      e.preventDefault();
+    const removeRoom = (id: number) => {
       dispatch(deleteRoom(id));
-      setFilteredResults(roomsList); 
-    };
+      setFilteredResults(roomsList)
+    }
 
   // DROPDOWN
   useEffect(() => {
@@ -96,7 +95,7 @@ function Rooms() {
               <option value="status">Status</option>
             </Select>
           </Optionsdiv>
-          <ProductTable data={filteredResults} column={column} rowsPerPage={10} onDeleteRoom={onDeleteRoom}/>     
+          <ProductTable data={filteredResults} column={column} rowsPerPage={10} removeRoom={removeRoom}/>     
         </>
       </div>
     </Layout>
